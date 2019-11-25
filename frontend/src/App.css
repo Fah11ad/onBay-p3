@@ -20,3 +20,132 @@
 .App-link {
   color: #09d3ac;
 }
+
+/* Fahad style */
+form {
+  background-color: rgba(1, 1, 40, 0.7);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+  margin: auto;
+}
+.form-row {
+  margin-left: 10px;
+}
+.search-bar {
+  position: absolute;
+  top: 70%;
+  margin-left: 10%;
+  margin-right: 10%;
+  color: aliceblue;
+  z-index: 1;
+ 
+}
+.hide-chr {
+  color: rgba(0, 0, 0, 0);
+}
+.third {
+  
+    text-align: right;
+    
+} 
+.form-group {
+  padding-top: 5%
+}
+
+@media only screen and (max-width:768px) {
+.search-btn {
+  display: block;
+  width: 100%;
+}
+.search-bar {
+  position: fixed;
+  top:30%;
+  block-size: 50px;
+  float: left;
+}
+}
+
+.carouseslStyle{
+  margin-right:15%;
+  margin-left:15%;
+}
+
+.mapMargins{
+  margin-right:15%;
+  margin-left:15%;
+}
+
+/* body { */
+  /* background-color: chartreuse; */ 
+    /* background-image: url('../src/assets/villa2-pic.jpg');  */
+    /* background-position: top;
+    background-size: cover;
+    
+/* } */
+
+/* .home-img {
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
+  
+  /* font-family: 'Open Sans', Arial, Helvetica, Sans-Serif; */
+/* } */
+/* ------- End Fahad Style-------- */
+
+
+/* --------- Nada Style ----------- */
+.form{
+  margin: 0 auto;
+  width: 30%;
+  background-color: #cfd8dc;
+  padding: 10px;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px
+  }
+  .formcontainer{
+  margin: 0 auto;
+  margin-top:7%;
+  }
+  .top{
+    margin: 0 auto;
+    width: 30%;
+    background-color:#6c757d ;
+    color: white;
+    font-size: 100%;
+    text-align: center;
+    height: 50px;
+    padding: 10px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+  }
+  .btnn{
+    padding-left: 35%
+  ​
+  }
+  .villacontainer{
+    width: 80%
+  }
+  .villatop{
+    margin: 0 auto;
+    width: 80%;
+    background-color:#6c757d ;
+    color: white;
+    font-size: 100%;
+    text-align: center;
+    height: 50px;
+    padding: 10px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+  }
+  .villaform{
+    margin: 0 auto;
+    width: 80%;
+    background-color: #cfd8dc;
+    padding: 10px;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    }
+/* --------- End Nada Style ----------- */
