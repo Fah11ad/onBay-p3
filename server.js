@@ -8,8 +8,6 @@ const passport = require('passport')
 const userRoutes = require("./routes/userRoute")
 const villaRoutes = require("./routes/villasRoutes")
 const bookingRoutes = require("./routes/bookingRoutes")
-const ratingRoutes = require("./routes/ratingRoutes")
-const userRoutes = require("./routes/userRoute")
 const cors = require('cors')
 
 
@@ -56,6 +54,5 @@ mongoose.connect(
 app.use("/user",userRoutes)
 app.use("/villa",villaRoutes)
 app.use("/booking",bookingRoutes)
-app.use("/ratings",ratingRoutes)
 
 app.listen(4000, () => console.log("express running"));
