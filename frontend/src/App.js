@@ -40,10 +40,10 @@ class App extends Component {
     <BrowserRouter>
     <div className="App">
       <CustomNavbar />
-      <DetailPage/>
+      {/* <DetailPage/> */}
       <Switch>
       {/* <Route exact path="/" render={(props) => <Home {...props} response={this.state.response} />} /> */}
-      {/* <Route exact path="/" component={Home} /> */}
+      <Route exact path="/" component={Home} />
       <Route path="/OwnerLogin" component={OwnerLogin} />
       <Route path="/OwnerSignUp" component={OwnerSignUp} />
       <Route path="/AddVilla" component={AddVilla} />
