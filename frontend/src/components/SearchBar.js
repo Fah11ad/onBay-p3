@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 // import { NavLink } from 'react-router-dom'
 import '../App.css'
 import axios from "axios"
+import { Route, BrowserRouter, Switch, withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 export default class CustomTables extends Component {
     // initlaize state (1-imp)
@@ -23,7 +25,8 @@ export default class CustomTables extends Component {
             endDate: '',
             guests: '',
             bookings: null,
-            villas: null
+            villas: null,
+            results:null
         }
     }
 
@@ -94,11 +97,19 @@ export default class CustomTables extends Component {
                 searchResult.push(item)
             }
         })
-        searchResult.map(results => {
-            console.log("results")
-            console.log(results)
-        })
 
+
+        this.setState({results:searchResult})
+        console.log("results length: "+searchResult.length)
+        // searchResult.map(results => {
+        //     console.log("results")
+        //     console.log(results)
+        // })
+
+        // <Redirect to={{
+        //     pathname: '/results',
+        //     state: { results: this.state.results }
+        //   }}/>
         //Reset the form after submition (3-imp)
         // this.setState({
         //     city: '',
@@ -111,7 +122,12 @@ export default class CustomTables extends Component {
     render() {
         return (
             <div>
-
+                {this.state.results != null && 
+                <Redirect to={{
+                    pathname: '/Results',
+                    state: { results: this.state.results }
+                  }}/>
+                }
                 <div className="search-bar">
                     <form onSubmit={this.onSubmit}>
                         <div className="form-row" >

@@ -49,7 +49,7 @@ class App extends Component {
       <Route path="/AddVilla" component={AddVilla} />
       <Route path="/CustomerLogin" component={CustomerLogin} />
       <Route path="/CustomerSignUp" component={CustomerSignUp} />
-      <Route path="/SearchResults" component={SearchResults} />
+      <Route path="/Results" component={SearchResults} />
       <Route path='/profile' component={Profile} />
       </Switch>   
     </div>

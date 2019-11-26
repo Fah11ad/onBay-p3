@@ -10,13 +10,14 @@ process.env.SECRET_KEY = 'secret'
 // rigister steps (1-regist)
 router.post('/register', (req, res) => {
     const newUser = {
-        first_name : req.body.first_name,
-        last_name : req.body.last_name,
+        firstname : req.body.firstname,
+        lastname : req.body.lastname,
         email : req.body.email,
-        phoneNumber: req.body.phoneNumber,
-        password : req.body.password
-        
+        phonenumber: req.body.phonenumber,
+        password : req.body.password,
+        type:req.body.type       
     }
+
     console.log(newUser)
     // Search if email is exist or not
     User.findOne({email : req.body.email})

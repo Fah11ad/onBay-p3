@@ -33,15 +33,15 @@ onSubmitHandelr =(e)=>{
              <Form onSubmit ={this.onSubmitHandelr}>
                 
                 <Form.Group controlId="Firstname">
-                     <Form.Control type="string" placeholder=" First Name"  name ="first_name" 
+                     <Form.Control type="string" placeholder=" First Name"  name ="firstname" 
                      onChange = {this.onChangHandler}/>
                  </Form.Group>
                  <Form.Group controlId="Lastname">
-                     <Form.Control type="string" placeholder=" Last Name"  name ="last_name" 
+                     <Form.Control type="string" placeholder=" Last Name"  name ="lastname" 
                      onChange = {this.onChangHandler}/>
                  </Form.Group>
                  <Form.Group controlId="PhoneNumber">
-                     <Form.Control type="string" placeholder=" Phone Number"  name ="phoneNumber" 
+                     <Form.Control type="string" placeholder=" Phone Number"  name ="phonenumber" 
                      onChange = {this.onChangHandler}/>
                  </Form.Group>
                 

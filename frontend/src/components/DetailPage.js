@@ -3,7 +3,7 @@ import vImage from "../assets/villaImg.jpg"
 import ReactMapGL, { Marker } from 'react-map-gl'
 import markerImg from "../assets/marker20.png"
 import Ratings from 'react-ratings-declarative'
-import { Carousel, Form } from 'react-bootstrap'
+import { Carousel, Form,Jumbotron, Container} from 'react-bootstrap'
 
 
 export default class DetailPage extends Component {
@@ -50,41 +50,33 @@ export default class DetailPage extends Component {
         let ratingAv = 3
         return (
             <div>
+                <img
+                    className="d-block w-100"
+                    src={vImage}
+                    style={{ width: 600, height: 500 }}
+                    alt="First slide"
+                />
                 <h1>Villa Name</h1>
-                <Carousel className="carouseslStyle">
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={vImage}
-                            style={{ width: 600, height: 500 }}
-                            alt="First slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={vImage}
-                            style={{ width: 600, height: 500 }}
-                            alt="Third slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
-                <br/>
+
+                <Jumbotron fluid>
+                    <Container>
+                        <h1>Fluid jumbotron</h1>
+                        <p>
+                            This is a modified jumbotron that occupies the entire horizontal space of
+                            its parent.
+    </p>
+                    </Container>
+                </Jumbotron>
+
+                <br />
                 <h2>Facilities icons</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia arcu sit amet eros congue elementum. 
-                    Donec urna elit, dapibus non lacus vitae, tempor egestas tellus. Praesent eu urna vel tellus blandit blandit. Vivamus 
-                    quis eros vel libero faucibus tincidunt eu sed enim. Fusce tellus dolor, bibendum id felis nec, rhoncus tempor diam. 
-                    Pellentesque mollis eu nunc vitae fermentum. Proin eget semper dolor. Nullam id felis non sem dictum elementum eu quis 
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia arcu sit amet eros congue elementum.
+                    Donec urna elit, dapibus non lacus vitae, tempor egestas tellus. Praesent eu urna vel tellus blandit blandit. Vivamus
+                    quis eros vel libero faucibus tincidunt eu sed enim. Fusce tellus dolor, bibendum id felis nec, rhoncus tempor diam.
+                    Pellentesque mollis eu nunc vitae fermentum. Proin eget semper dolor. Nullam id felis non sem dictum elementum eu quis
                     sapien. Donec nec venenatis mauris, fringilla imperdiet lorem.
                      Phasellus id mauris augue. Curabitur ut ligula elit. Mauris vel mi eu neque luctus varius vel sed eros.</p>
+                <h2>price</h2>
                 <br />
                 {ratingAv > 0 &&
                     <Ratings
@@ -102,7 +94,7 @@ export default class DetailPage extends Component {
                 <ReactMapGL className="mapMargins" {...this.state.viewport} mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
                     onViewportChange={(viewport) => this.setState({ viewport })}>
                     <Marker latitude={21.6394345} longitude={39.1322110} offsetLeft={0} offsetTop={0} >
-                    {/* offsetLeft={-20} offsetTop={-10}  */}
+                        {/* offsetLeft={-20} offsetTop={-10}  */}
                         <img src={markerImg} />
                     </Marker>
                     {/* <Marker
@@ -117,11 +109,7 @@ export default class DetailPage extends Component {
                 <input onClick={this.postreview.bind(this)} type="button" value="submit" />
                 {/* {this.state.reviews != null && this.state.reviews.map((item)=>{return <Reviewcards data={item} />})}  */}
 
-
-
-
-
-
+                <h2>book it button</h2>
 
 
             </div>

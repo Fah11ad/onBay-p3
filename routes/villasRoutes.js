@@ -9,7 +9,8 @@ router.post("/create", (req, res) => {
   vi.name = req.body.name;
   vi.owner = req.body.owner;
   vi.city = req.body.city;
-  //   vi.pricePerNight = req.body.pricePerNight;
+  //   vi.price = req.body.price
+  ;
   vi.description = req.body.description;
   vi.guests = req.body.guests;
   //   vi.x=req.body.x;

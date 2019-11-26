@@ -3,7 +3,7 @@ import axios  from "axios"
 
 // Register
 export const register = (newuser)=>{
-    return axios.post('/users/register' ,newuser )
+    return axios.post('/user/register' ,newuser )
     .then(res => console.log("registerd ! "))
     .catch(err => console.log(err))
 }

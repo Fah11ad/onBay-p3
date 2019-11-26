@@ -3,6 +3,8 @@ import { Card, Image, Row, Col, Button } from 'react-bootstrap'
 
 export default class SearchResults extends Component {
     render() {
+
+        console.log(this.props.location.state.results)
         return (
             <div style={{ border: "2px" }}>
                 <Card className="mx-5 my-5">

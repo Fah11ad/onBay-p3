@@ -44,13 +44,6 @@ mongoose.connect(
   }
 );
 
-//fahad's code
-// mongoose.connect(
-//     'mongodb://localhost/user',
-//     { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex : true })
-//     .then( res => console.log('mongoDB is connected'))
-//     .catch( err => console.log(err))
-
 app.use("/user",userRoutes)
 app.use("/villa",villaRoutes)
 app.use("/booking",bookingRoutes)
