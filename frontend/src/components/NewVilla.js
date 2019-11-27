@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col,Alert } from 'react-bootstrap'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
@@ -26,8 +26,6 @@ export default class NewVilla extends Component {
 
     onChangHandler = e => {
         this.setState({ [e.target.name]: e.target.value, })
-        console.log("in onChange")
-        console.log(e.target.id)
 
         if (e.target.id != "") {
             let temp = this.state.facilities.slice()
@@ -75,11 +73,9 @@ export default class NewVilla extends Component {
             image: im
         }
 
-        console.log("params")
-        console.log(params)
 
         axios.post("http://localhost:4000/villa/create", params)
-        
+
         this.setState({ checked: true })
 
 
@@ -87,133 +83,122 @@ export default class NewVilla extends Component {
 
     render() {
 
-        console.log("facilities")
-        console.log(this.state.facilities.length)
 
         return (
             <div className="villacontainer">
+                {this.state.checked == true &&
+                <Alert style={{ marginLeft:"10%",marginRight:"10%" , backgroundColor: "rgb(212,237,218)", color:"green"}} color="success">Successfully added new villa</Alert>
+                } 
                 <div className="villatop">ADD VILLA</div>
                 <div className="villaform">
                     <Form>
-                        <Form.Group >
-                            <Form.Label>Villa Name:</Form.Label>
-                            <Form.Control name="name" type="String" onChange={this.onChangHandler} />
-                        </Form.Group>
+                    <Form.Group >
+                        <Form.Label className="detalilsform">Villa Name:</Form.Label>
+                        <Form.Control name="name" type="String" onChange={this.onChangHandler} />
+                    </Form.Group>
+                    <Form.Group >
 
-                        <Form.Group >
+                        <Form.Label className="detalilsform">Villa Area:</Form.Label>
+                        <Form.Control type="String" onChange={this.onChangHandler} name="area" />
+                    </Form.Group>
 
-                            <Form.Label>Villa Area:</Form.Label>
-                            <Form.Control type="String" onChange={this.onChangHandler} name="area" />
-                        </Form.Group>
+                    <Form.Group >
+                        <Form.Label className="detalilsform">Select City</Form.Label>
+                        <Form.Control type="String" onChange={this.onChangHandler} name="city" />
+                    </Form.Group>
 
-                        <Form.Group >
+                    <Form.Group >
+                        <Form.Label className="detalilsform">Villa Price:</Form.Label>
+                        <Form.Control type="String" onChange={this.onChangHandler} name="price" />
+                    </Form.Group>
 
-                            <Form.Label>City:</Form.Label>
-                            <Form.Control type="String" onChange={this.onChangHandler} name="city" />
-                        </Form.Group>
+                    <Form.Group >
+                        <Form.Label className="detalilsform">Select Number of Gusts:</Form.Label>
+                        <Form.Control as="select" onChange={this.onChangHandler} name="guests">
+                            <option>5 - 10</option>
+                            <option>10 - 20</option>
+                            <option>20 - 30</option>
+                            <option>30 - 50</option>
+                            <option>50 and above</option>
+
+                        </Form.Control>
+                    </Form.Group>
 
 
+                    <Form.Group >
+                        <Form.Label className="detalilsform">Villa Description: </Form.Label>
+                        <Form.Control as="textarea" type="String" onChange={this.onChangHandler} name="description" />
+                    </Form.Group>
 
-                        <Form.Group >
-                            <Form.Label>Villa Price:</Form.Label>
-                            <Form.Control type="String" onChange={this.onChangHandler} name="price" />
-                        </Form.Group>
-                        <Form.Group >
-                            <Form.Label>Select Number of Gusts:</Form.Label>
-                            <Form.Control as="select" onChange={this.onChangHandler} name="guests">
-                                <option>5 - 10</option>
-                                <option>10 - 20</option>
-                                <option>20 - 30</option>
-                                <option>30 - 50</option>
-                                <option>50 and above</option>
+                    <Form.Group >
+                        <Form.Label className="detalilsform">Location: </Form.Label>
+                        <Row>
+                            <Col>
+                                <Form.Control type="String" onChange={this.onChangHandler} name="x" placeholder="latitude" />
 
-                            </Form.Control>
-                        </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Control type="String" onChange={this.onChangHandler} name="y" placeholder="longitude" />
 
-                        <Form.Group >
-                            <Form.Label>Villa Disceiption: </Form.Label>
-                            <Form.Control as="textarea" type="String" onChange={this.onChangHandler} name="description" />
-                        </Form.Group>
-                        <Form.Group >
-                            <Form.Label>Location: </Form.Label>
-                            <Row>
-                                <Col>
-                                    <Form.Control type="String" onChange={this.onChangHandler} name="x" placeholder="latitude" />
+                            </Col>
+                        </Row>
+                    </Form.Group>
 
-                                </Col>
-                                <Col>
-                                    <Form.Control type="String" onChange={this.onChangHandler} name="y" placeholder="longitude" />
 
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                        <Form.Label>Facilities: </Form.Label>
-                        <Form>
-                            {['checkbox'].map(type => (
-                                <div key={`default-${type}`} className="mb-3">
-                                    <Row>
-                                        <Col>
+                    <Form.Label className="detalilsform" >Facilities: </Form.Label>
+                    <br />
+                    <br />
+                    <Form style={{ display: "grid", gridAutoColumns: "1fr 1fr 1fr" }}>
+                        {['checkbox'].map(type => (
+                            <div key={`default-${type}`} className="mb-3">
+                                <Row>
+                                    <Col>
 
-                                            <Form.Check onChange={this.onChangHandler} label="Terrace" type={type} id="terrace" />
-                                            <Form.Check onChange={this.onChangHandler} label="Sport Court " type={type} id="sport court" />
-                                            <Form.Check label="WiFi" type={type} id="wifi" />
+                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Terrace" type={type} id="terrace" />
+                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Sport Court " type={type} id="sport court" />
+                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="WiFi" type={type} id="wifi" />
 
-                                        </Col>
-                                        <Col>
+                                    </Col>
+                                    <Col>
 
-                                            <Form.Check onChange={this.onChangHandler} label="Kitchen" type={type} id="kitchen" />
-                                            <Form.Check onChange={this.onChangHandler} label="Garden" type={type} id="garden" />
-                                            <Form.Check onChange={this.onChangHandler} label="Grill" type={type} id="grill" />
+                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Kitchen" type={type} id="kitchen" />
+                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Garden" type={type} id="garden" />
+                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Grill" type={type} id="grill" />
 
-                                        </Col>
-                                        <Col>
+                                    </Col>
+                                    <Col>
 
-                                            <Form.Check onChange={this.onChangHandler} label="Playground" type={type} id="playground" />
-                                            <Form.Check onChange={this.onChangHandler} label="Children Swimming Pool" type={type} id="cswimming pool" />
-                                            <Form.Check onChange={this.onChangHandler} label=" Swimming Pool" type={type} id="swimming pool" />
+                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Playground" type={type} id="playground" />
+                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Children Swimming Pool" type={type} id="cswimming pool" />
+                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label=" Swimming Pool" type={type} id="swimming pool" />
 
-                                        </Col>
-                                    </Row>
-                                </div>
-                            ))}
-
-                        </Form>
-                        <div>
-
-                            <div className="custom-file">
-                                <input
-                                    type="file"
-                                    className="custom-file-input"
-                                    id="inputGroupFile01"
-                                    aria-describedby="inputGroupFileAddon01"
-                                />
-                                <label className="custom-file-label" htmlFor="inputGroupFile01">
-                                    Choose file
-                             </label>
+                                    </Col>
+                                </Row>
                             </div>
-                            {this.state.uploadedFile ? (
-                                <div className='row mt-5'>
-                                    <div className='col-md-6 m-auto'>
-                                        <h3 className='text-center'>uploadedFile.fileName</h3>
-
-                                    </div>
-                                </div>
-                            ) : null}
-                        </div>
-
-                        <div className="btnn">
-                            <Button onClick={this.onSubmit} variant='secondary' type="submit">
-                                ADD
-                  </Button>
-
-                        </div>
+                        ))}
                     </Form>
 
+
+                    <div>
+                        <form>
+                            <div id="upload">
+                                <div className="custom-file">
+                                    <input style={{ width: "50%" }} type="file" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
+                                    <label class="custom-file-label" htmlFor="inputGroupFile01">Choose file</label>
+
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <button onClick={this.onSubmit} className="btnn" type="submit">ADD</button>
+
+
+
+                    </div>
+                    
+                </Form>
                 </div>
-                {this.state.checked == true &&
-                    <Redirect to={{
-                        pathname: '/'
-                    }} />}
             </div>
         )
     }

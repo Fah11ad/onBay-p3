@@ -1,14 +1,23 @@
-
-.carouseslStyle{
-  margin-right:15%;
-  margin-left:15%;
-}
-
-.mapMargins{
-  margin-right:15%;
-  margin-left:15%;
-}
-
+.btn-secondary {
+  color: #fff !important;
+  text-decoration: none !important;
+  background: #eec019!important;
+  border: none !important;
+  padding: 15px !important;
+  border-radius: 5px !important;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+  }
+  .btn-secondary:hover {
+    background: #434343 !important;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57) !important;
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57) !important;
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57) !important;
+    transition: all 0.4s ease 0s !important;
+    }
+    
 .App {
   text-align: center;
 }
@@ -32,9 +41,198 @@
   color: #09d3ac;
 }
 
+
+
+/* ---------Not Found Page Style------------------ */
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+
+
+#notfound {
+  position: relative;
+  height: 100vh;
+  background: #f6f6f6;
+}
+
+#notfound .notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.notfound {
+  max-width: 767px;
+  width: 100%;
+  line-height: 1.4;
+  padding: 110px 40px;
+  text-align: center;
+  background: #fff;
+  -webkit-box-shadow: 0 15px 15px -10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 15px 15px -10px rgba(0, 0, 0, 0.1);
+}
+
+.notfound .notfound-404 {
+  position: relative;
+  height: 180px;
+}
+
+.notfound .notfound-404 h1 {
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 165px;
+  font-weight: 700;
+  margin: 0px;
+  color: #262626;
+  text-transform: uppercase;
+}
+
+.notfound .notfound-404 h1>span {
+  color: #eec019;
+}
+
+.notfound h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #151515;
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+
+.notfound .notfound-search {
+  position: relative;
+  max-width: 320px;
+  width: 100%;
+  margin: auto;
+}
+
+.notfound .notfound-search>input {
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  height: 50px;
+  padding: 3px 65px 3px 30px;
+  color: #151515;
+  font-size: 16px;
+  background: transparent;
+  border: 2px solid #c5c5c5;
+  border-radius: 40px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.notfound .notfound-search>input:focus {
+  border-color: #00b7ff;
+}
+
+.notfound .notfound-search>button {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.notfound .notfound-search>button>span {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+      -ms-transform: translate(-50%, -50%) rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
+  margin-left: -3px;
+}
+
+.notfound .notfound-search>button>span:after {
+  position: absolute;
+  content: '';
+  width: 10px;
+  height: 10px;
+  left: 0px;
+  top: 0px;
+  border-radius: 50%;
+  border: 4px solid #c5c5c5;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.notfound-search>button>span:before {
+  position: absolute;
+  content: '';
+  width: 4px;
+  height: 10px;
+  left: 7px;
+  top: 17px;
+  border-radius: 2px;
+  background: #c5c5c5;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.notfound .notfound-search>button:hover>span:after {
+  border-color: #00b7ff;
+}
+
+.notfound .notfound-search>button:hover>span:before {
+  background-color: #00b7ff;
+}
+
+@media only screen and (max-width: 767px) {
+  .notfound h2 {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .notfound .notfound-404 h1 {
+    font-size: 141px;
+  }
+}
+
+.example_a {
+color: #fff !important;
+text-decoration: none !important;
+background: #eec019;
+padding: 20px;
+border-radius: 5px;
+display: inline-block;
+border: none;
+transition: all 0.4s ease 0s;
+}
+.example_a:hover {
+  background: #434343;
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.4s ease 0s;
+  }
+
+/* ---------End Not Found Page Style-------------- */
+
+
+
 /* Fahad style */
 form {
-  background-color: rgba(1, 1, 40, 0.7);
+  /* background-color: rgba(1, 1, 40, 0.7); */
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 5px;
@@ -77,7 +275,15 @@ form {
 }
 }
 
+.carouseslStyle{
+  margin-right:15%;
+  margin-left:15%;
+}
 
+.mapMargins{
+  margin-right:15%;
+  margin-left:15%;
+}
 
 /* body { */
   /* background-color: chartreuse; */ 
@@ -103,6 +309,258 @@ form {
 .form{
   margin: 0 auto;
   width: 30%;
+  background-color:#f0ece2;
+  padding: 10px;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px
+  }
+  .formcontainer{
+  margin: 0 auto;
+  margin-top:7%;
+  }
+  .top{
+    margin: 0 auto;
+    width: 30%;
+    background-color:#16174b ;
+    color: white;
+    font-size: 100%;
+    text-align: center;
+    height: 50px;
+    padding: 10px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+  }
+  .btnn{
+   border-radius: 5px;
+    background-color:#f6d55c;
+    width: 70px;
+    color: white;
+    font-weight: bold;
+  }
+  .villacontainer{
+    width: 70%;
+    margin: 0 auto;
+    margin-top:4%;
+  }
+  .villatop{
+    margin: 0 auto;
+    width: 80%;
+    background-color:#16174b;
+    color: white;
+    font-size: 100%;
+    text-align: center;
+    height: 50px;
+    padding: 10px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+  }
+  .villaform{
+    margin: 0 auto;
+    width: 80%;
+    background-color: #f0ece2;
+    padding: 10px;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    }
+  .detalilsform{
+    margin-top: 2%;
+    float: left;
+   
+ 
+  }
+  .villimage{
+    width: 50%;
+    height: 50%;
+    margin-left: 5px;
+    float: left;
+    border-radius: 3px;
+  }
+  .icon{
+    width: 3%;
+    height: 3%;
+    float: left;
+    margin-left: 7%;
+  }
+  .facilities{
+   width: 100%;
+    float:left;
+    border:#eff3f6 solid .5px;
+    margin: 0;
+  
+
+  }
+  .label1{
+    
+    background-color: #eff3f6;
+    width: 100%;
+    height: 30px;
+    
+  }
+  
+  a{
+    display: inline;
+    width: 50px;
+    margin-top: 10px;
+    margin-left: 40px;
+    font-weight: bold;
+  
+  }
+/* --------- End Nada Style ----------- */
+
+
+/* nada's css
+.detalilsform{
+  margin-top: 2%;
+  float: left;
+
+
+}
+.villimage{
+  width: 50%;
+  height: 50%;
+  margin-left: 5px;
+  float: left;
+  border-radius: 3px;
+}
+.icon{
+  width: 3%;
+  height: 3%;
+  float: left;
+  margin-left: 7%;
+}
+.facilities{
+ width: 100%;
+  float:left;
+  border:#eff3f6 solid .5px;
+  margin: 0;
+
+
+}
+.label1{
+
+  background-color: #eff3f6;
+  width: 100%;
+  height: 30px;
+
+}
+
+a{
+  display: inline;
+  width: 50px;
+  margin-top: 10px;
+  margin-left: 40px;
+  font-weight: bold;
+
+} */
+
+
+
+/* doaa's css */
+/* .carouseslStyle{
+  margin-right:15%;
+  margin-left:15%;
+}
+
+.mapMargins{
+  margin-right:15%;
+  margin-left:15%;
+} */
+
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+/* Fahad style */
+/* form { */
+  /* background-color: rgba(1, 1, 40, 0.7); */
+  /* padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+  margin: auto;
+}
+.form-row {
+  margin-left: 10px;
+}
+.search-bar {
+  position: absolute;
+  top: 70%;
+  margin-left: 10%;
+  margin-right: 10%;
+  color: aliceblue;
+  z-index: 1;
+ 
+}
+.hide-chr {
+  color: rgba(0, 0, 0, 0);
+}
+.third {
+  
+    text-align: right;
+    
+} 
+.form-group {
+  padding-top: 5%
+}
+
+@media only screen and (max-width:768px) {
+.search-btn {
+  display: block;
+  width: 100%;
+}
+.search-bar {
+  position: fixed;
+  top:30%;
+  block-size: 50px;
+  float: left;
+}
+}  */
+
+
+
+/* body { */
+  /* background-color: chartreuse; */ 
+    /* background-image: url('../src/assets/villa2-pic.jpg');  */
+    /* background-position: top;
+    background-size: cover;
+    
+/* } */
+
+/* .home-img {
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
+  
+  /* font-family: 'Open Sans', Arial, Helvetica, Sans-Serif; */
+/* } */
+/* ------- End Fahad Style-------- */
+
+
+/* --------- Nada Style ----------- */
+/* .form{
+  background-color:#f0ece2;
+  margin: 0 auto;
+  width: 30%;
   background-color: #cfd8dc;
   padding: 10px;
   border-bottom-left-radius:5px;
@@ -115,7 +573,7 @@ form {
   .top{
     margin: 0 auto;
     width: 30%;
-    background-color:#6c757d ;
+    background-color:#16174b ;
     color: white;
     font-size: 100%;
     text-align: center;
@@ -125,16 +583,21 @@ form {
     border-top-right-radius:5px;
   }
   .btnn{
-    padding-left: 35%
-  ​
+  ​border-radius: 5px;
+  background-color:#f6d55c;
+  width: 70px;
+  color: white;
+  font-weight: bold;
   }
   .villacontainer{
-    width: 80%
+    width: 70%;
+    margin: 0 auto;
+    margin-top:4%;
   }
   .villatop{
     margin: 0 auto;
     width: 80%;
-    background-color:#6c757d ;
+    background-color:#16174b;
     color: white;
     font-size: 100%;
     text-align: center;
@@ -146,15 +609,15 @@ form {
   .villaform{
     margin: 0 auto;
     width: 80%;
-    background-color: #cfd8dc;
+    background-color: #f0ece2;
     padding: 10px;
     border-bottom-left-radius:5px;
     border-bottom-right-radius:5px;
-    }
+    } */
 /* --------- End Nada Style ----------- */
 
 /* ------ Search Results style -----  */
-.spotlight {
+/* .spotlight {
   display: -moz-flex;
   display: -webkit-flex;
   display: -ms-flex;
@@ -222,17 +685,17 @@ form {
 .spotlight {
   background-color: white;
   border-bottom-color: rgba(144, 144, 144, 0.25);
-}
+} */
 
 /* ul  */
-ul.actions {
+/* ul.actions {
   cursor: default;
   list-style: none;
   padding-left: 0;
-}
+} */
 /* Button  */
 /* Button */
-
+/* 
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
@@ -414,10 +877,10 @@ button,
     button.special:active,
     .button.special:active {
       background-color: #00a377;
-    }
+    } */
 
 /* Wrapper */
-
+/* 
 .wrapper {
   padding: 5em 0 3em 0;
   position: relative;
@@ -609,4 +1072,4 @@ button,
 
     .wrapper.style1 .formerize-placeholder {
       color: #99e4d0 !important;
-    }
+    } */

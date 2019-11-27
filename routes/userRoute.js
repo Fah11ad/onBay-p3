@@ -10,94 +10,113 @@ process.env.SECRET_KEY = 'secret'
 // rigister steps (1-regist)
 router.post('/register', (req, res) => {
     const newUser = {
-        firstname : req.body.firstname,
-        lastname : req.body.lastname,
-        email : req.body.email,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
         phonenumber: req.body.phonenumber,
-        password : req.body.password,
-        type:req.body.type       
+        password: req.body.password,
+        type: req.body.type
     }
 
     console.log(newUser)
     // Search if email is exist or not
-    User.findOne({email : req.body.email})
-    .then(user => {
-        // if email not exist
-        if(!user){
-            // hashing step
-           
-            bcrypt.hash(req.body.password, 10, (err, hash)=>{
-              newUser.password = hash
-              
-              User.create(newUser)
-              .then(user => res.send("user created" + newUser.email))
-              .catch(err => res.send(err))
-              console.log(bcrypt.compareSync(req.body.password , newUser.password))
-              // res.send("s")
-            })
-          }
-        // if email is exist
-        else {
-            res.send(`email is already used`)
-        }
-    })
-    .catch(err => res.send(err))
-})
-// get all user test 
-// router.get('/test' , (req , res)=>{
-//   var test = ""
-//   bcrypt.hash("123456", 10, (err, hash)=>{
-//     test = hash
-//     console.log(test)
-//     console.log(bcrypt.compareSync("123456", "$2b$10$7MxDTxKgUeDuOvST2M1au.CBY0BL9DI9nT7ziXEN1RviaU/j/pHHK"))
-//   })
-  
-  
+    User.findOne({ email: req.body.email })
+        .then(user => {
+            // if email not exist
+            if (!user) {
+                // hashing step
 
-//   User.find()
-//   .then(user =>res.send(user))
-// })
+                bcrypt.hash(req.body.password, 10, (err, hash) => {
+                    newUser.password = hash
+
+                    User.create(newUser)
+                        .then(user => res.send("user created" + newUser.email))
+                        .catch(err => res.send(err))
+                    console.log(bcrypt.compareSync(req.body.password, newUser.password))
+                    // res.send("s")
+                })
+            }
+            // if email is exist
+            else {
+                res.send(`email is already used`)
+            }
+        })
+        .catch(err => res.send(err))
+})
 
 // Login steps (1-login) 
-router.post('/login', (req, res)=> {
+router.post('/login', (req, res) => {
     //check email is exist or not
-    
-    User.findOne({email: req.body.email})
-    .then(user => {
-        // if email is exist
-       
-        if(user) {
-            console.log(req.body.password)
-            console.log(user.password)
 
-            console.log(bcrypt.compareSync(req.body.password.toString() , user.password))
- 
-            if(bcrypt.compareSync( req.body.password, user.password)){
+    User.findOne({ email: req.body.email })
+        .then(user => {
+            // if email is exist
 
-                user.password = "" //  "" we don't want password to appear
-                var paylod = {user}
-                let token = jwt.sign(paylod, 'secret', {expiresIn: 1440})  
-                res.send(token) 
+            if (user) {
+                console.log(req.body.password)
+                console.log(user.password)
+
+                console.log(bcrypt.compareSync(req.body.password.toString(), user.password))
+
+                if (bcrypt.compareSync(req.body.password, user.password)) {
+
+                    user.password = "" //  "" we don't want password to appear
+                    var paylod = { user }
+                    let token = jwt.sign(paylod, 'secret', { expiresIn: 1440 })
+                    res.send(token)
+                }
+                // if password not the same
+                else {
+                    res.send("password is not currect")
+                }
             }
-            // if password not the same
             else {
-                res.send("password is not currect")
+                // if email not exist
+                console.log("yess")
+                res.send("email is not found")
             }
-        }
-        else {
-            // if email not exist
-            console.log("yess")
-            res.send("email is not found")
-        }
-    })
-    .catch(err => res.send(err))
+        })
+        .catch(err => res.send(err))
 })
+
 // Logout steps
 router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/login');
-  });
+});
+
+
+router.put('/changedetails/:id', (req, res) => {
+    // res.send({result})
+    console.log(req.body)
+    User.findByIdAndUpdate(req.params.id, req.body)
+        .then((user) => {  console.log("Updated!!") 
+         res.json({ msg: 'your data is updated', user: user }) })
+        .catch(err => res.send(err))
+})
+
+// for update token after edit data 
+router.post('/edit/token', (req, res) => {
+    User.findOne({ email: req.body.email })
+        .then(user => {
+            // if email is exist
+            if (user) {
+                var paylod = { user }
+                let token = jwt.sign(paylod, 'secret', { expiresIn: 1440 })
+                res.send(token)
+            }
+            else {
+                // if email not exis
+                res.send("email is not found")
+            }
+        })
+        .catch(err => res.send(err))
+})
+
+
+
+
 
 
 // we comment the below code because we want to do it with React 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Button, Image, Form, Row, Nav, Link } from 'react-bootstrap'
+import { Button, Form,  Nav} from 'react-bootstrap'
 import { login } from '../functionAuth/functionAuth'
 import OwnerSignUp from './OwnerSignUp'
 
@@ -40,14 +40,17 @@ export default class AddVilla extends Component {
                                 onChange={this.onChangeHandler} />
                         </Form.Group>
 
-                        <div className="btnn">
-                            <Button variant='secondary' type="submit">
+                        {/* <div className="btnn"> */}
+                        {/* <Button variant='secondary' type="submit">
                                 LOG IN
-                </Button>
-                        </div>
+                </Button> */}
+                        {/* </div> */}
+                        <button className="btnn" type="submit" style={{ width: "90px" }}>
+                            LOG IN
+                         </button>
                         <Form.Group>
-                            <br />
-                            <div>Don’t have an account? <Nav.Link href="/OwnerSignUp"><Button variant="link"> Sign Up </Button></Nav.Link></div>
+                            <div>Don’t have an account? <Nav.Link href="/OwnerSignUp">
+                                <Button variant="link" style={{ width: "90px" }}> Sign Up </Button></Nav.Link></div>
                         </Form.Group>
                     </Form>
 
@@ -57,4 +60,4 @@ export default class AddVilla extends Component {
         )
     }
 }
- 
+

@@ -18,8 +18,16 @@ router.post("/create", (req, res) => {
 //get customers bookings
 router.get("/:id", (req, res) => {
   Booking.find({ customer: req.params.id })
+  .populate("villa")
     .then(m => { res.json(m) })
     .catch(err => res.json(err))
+})
+
+//delete a booking
+router.delete("/:id",(req,res)=>{
+  Booking.findByIdAndRemove(req.params.id)
+  .then(()=>{res.json("succesfully deletes")})
+  .catch(err=>{res.json(err)})
 })
 
 //get all bookings

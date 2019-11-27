@@ -23,7 +23,7 @@ app.use(ejsLayouts)
 
 const conn = mongoose.createConnection(process.env.DEV_DB)
 
-let gfs;
+let gfs
 
 mongoose.connect(
   process.env.DEV_DB,

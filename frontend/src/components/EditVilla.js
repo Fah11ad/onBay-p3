@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col,Alert } from 'react-bootstrap'
 import axios from 'axios'
 import Message from './Message'
 export default class EditVilla extends Component {
@@ -12,7 +12,8 @@ export default class EditVilla extends Component {
         uploadedFile: "",
         facilities: [],
         guests: "5 - 10",
-        owner: null
+        owner: null,
+        checked:false
     }
 
     componentDidMount() {
@@ -60,34 +61,37 @@ export default class EditVilla extends Component {
             facilities: this.state.facilities,
         }
 
+        this.setState({checked:true})
         console.log("params")
         console.log(params)
         axios.put("http://localhost:4000/villa/"+vID,params)
-
     }
 
     render() {
         return (
             <div className="villacontainer">
+                {this.state.checked == true &&
+                <Alert style={{ marginLeft:"10%",marginRight:"10%" , backgroundColor: "rgb(212,237,218)", color:"green"}} color="success">Successfully edited new villa</Alert>
+                } 
                 <div className="villatop">ADD VILLA</div>
                 <div className="villaform">
                     <Form>
                         <Form.Group >
-                            <Form.Label>Villa Name:</Form.Label>
+                            <Form.Label>Name</Form.Label>
                             <Form.Control value={this.state.name} name="name" type="String" onChange={this.onChangHandler} />
                         </Form.Group>
 
                         <Form.Group >
-                            <Form.Label>Villa Price:</Form.Label>
+                            <Form.Label>Price:</Form.Label>
                             <Form.Control value={this.state.price} type="String" onChange={this.onChangHandler} name="price" />
                         </Form.Group>
 
                         <Form.Group >
-                            <Form.Label>Villa Disceiption: </Form.Label>
+                            <Form.Label>Description </Form.Label>
                             <Form.Control value={this.state.description} as="textarea" type="String" onChange={this.onChangHandler} name="description" />
                         </Form.Group>
 
-                        <Form.Label>Facilities: </Form.Label>
+                        <Form.Label>Facilities </Form.Label>
                         <Form>
                             {['checkbox'].map(type => (
                                 <div key={`default-${type}`} className="mb-3">
@@ -118,28 +122,15 @@ export default class EditVilla extends Component {
                             ))}
 
                         </Form>
-                        <div>
-                            
-                            <form onSubmit={this.onSubmit}>
-                                <div id="upload">
-                                    <div className="custom-file">
-                                        <input style={{ width: "50%" }} type="file" id="customFile" multiple onChange={this.onChange} />
-                                        <label class="custom-file-label" htmlFor="customFile">{this.statefilename}</label>
-                                    </div>
-                                    <div>
-                                        <input type="submit" value="Upload" />
-                                    </div>
+                        
+                        <button onClick={this.onSubmit}  className="btnn" type="submit"> EDIT</button>
 
-                                </div>
-                            </form>
-                        </div>
-
-                        <div className="btnn">
+                        {/* <div className="btnn">
                             <Button onClick={this.onSubmit} variant='secondary' type="submit">
                                 ADD
                          </Button>
 
-                        </div>
+                        </div> */}
                     </Form>
 
                 </div>

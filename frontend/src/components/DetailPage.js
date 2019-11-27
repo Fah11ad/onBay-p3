@@ -3,10 +3,11 @@ import vImage from "../assets/villaImg.jpg"
 import ReactMapGL, { Marker } from 'react-map-gl'
 import markerImg from "../assets/marker20.png"
 import Ratings from 'react-ratings-declarative'
-import { Carousel, Form, Jumbotron, Container } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import jwt_decode from 'jwt-decode'
-import ReviewCards from "./ReviewCards"
 import axios from 'axios'
+import ReviewCards from "./ReviewCards"
+import { Alert } from 'react-bootstrap'
 
 export default class DetailPage extends Component {
 
@@ -16,6 +17,7 @@ export default class DetailPage extends Component {
         reviews: null,
         user: null,
         facilitiesList: null,
+        checked: false,
         viewport: {
             width: 800,
             height: 400,
@@ -32,6 +34,7 @@ export default class DetailPage extends Component {
 
         let vId = this.props.location.state.data._id    //this.props.data._id
 
+        this.setState({newRating:newRating})
         let params = {
             customer: this.state.user,
             ratevalue: newRating
@@ -94,76 +97,105 @@ export default class DetailPage extends Component {
             customer: this.state.user,
             villa: this.props.location.state.data._id
         }
+        this.setState({checked:true})
         axios.post("http://localhost:4000/booking/create", params)
     }
 
     render() {
-        let ratingAv = 3
         return (
             <div>
-                <img
-                    className="d-block w-100"
-                    src={vImage}
-                    style={{ width: 600, height: 500 }}
-                    alt="First slide"
-                />
-                <h1>{this.props.location.state.data.name}</h1>
+                <div className="detalilsform">
+                    <div>
+                        <img className="villimage"
+                            src={vImage}
+                            alt="villa image" />
+                    </div>
+                    <div style={{ marginTop: "2%" }}>
+                        <h1>{this.props.location.state.data.name}</h1>
+                        <Ratings
+                            rating={this.state.newRating}
+                            widgetRatedColors="rgb(255, 209, 26)"
+                            widgetHoverColors="rgb(255, 209, 26)"
+                            changeRating={this.changeRating.bind(this)}>
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                        </Ratings>
+                        <h3> {this.props.location.state.data.price + " SAR per night"}</h3>
+                        <br />
+                        {this.state.user != null &&
+                            <button type="button" class="btn btn-warning" onClick={this.bookIT}>Book Now</button>}
+                        {this.state.user == null &&
+                            <button type="button" class="btn btn-warning" href="/CustomerSignUp">login to book</button>}
+                            <br/>
+                            <br/>
+                        {this.state.checked == true &&
+                            <Alert style={{ marginLeft: "60%", marginRight: "10%", backgroundColor: "rgb(212,237,218)", color: "green" }} color="success">Successfully added new villa</Alert>
+                        }
 
+                    </div>
+
+                </div>
+                <br />
+                <br />
+
+                <div style={{ clear: "both" }}>
+                    <div className="label1">
+                        <h5 style={{ float: "left", marginLeft: "10px" }}>Facilities</h5>
+                    </div>
+                    <div className="facilities">
+
+                        {this.props.location.state.data.facilities.length > 0 && this.props.location.state.data.facilities.map(item => {
+                            return <div> <img className="icon" src={require("../assets/" + item + ".png")} /></div>
+                        })}
+
+                    </div>
+                </div>
+                <div style={{ clear: "both" }}>
+                    <div className="label1">
+                        <h5 style={{ float: "left", marginLeft: "10px" }}> Description</h5>
+                    </div>
+                    <br />
+                    <p>{this.props.location.state.data.description}</p>
+
+
+
+                </div>
+                <div style={{ clear: "both" }}>
+                    <div className="label1">
+                        <h5 style={{ float: "left", marginLeft: "10px" }}> Location</h5>
+                    </div>
+                    <ReactMapGL className="mapMargins" {...this.state.viewport} mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
+                        onViewportChange={(viewport) => this.setState({ viewport })}>
+                        <Marker latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} offsetLeft={0} offsetTop={0} >
+                            <img src={markerImg} />
+                        </Marker>
+
+                    </ReactMapGL>
+                </div>
+                <div style={{ clear: "both" }}>
+                    <div className="label1">
+                        <h5 style={{ float: "left", marginLeft: "10px" }}> Reviews</h5>
+                    </div>
+                    <br />
+                    {this.state.reviews != null && this.state.reviews.map((item) => { return <ReviewCards data={item} /> })}
+                </div>
                 {this.state.user != null &&
-                    <ul class="actions" onClick={this.bookIT} >
-                        <li><a class="button alt">Book it</a></li>
-                    </ul>}
-                {this.state.user == null &&
-                    <ul class="actions">
-                        <li><a class="button alt" href="/CustomerSignUp" >login to book</a></li>
-                    </ul>
-                }
+                    <div style={{ clear: "both" }}>
+                        <div className="label1">
+                            <h5 style={{ float: "left", marginLeft: "10px" }}>Add Reviews</h5>
+                        </div>
 
-                {this.props.location.state.data.facilities.map(item => {
-                    return <img src={require("../assets/" + item + ".png")} />
-                })}
-
-                <br />
-                <h2>Facilities icons</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia arcu sit amet eros congue elementum.
-                    Donec urna elit, dapibus non lacus vitae, tempor egestas tellus. Praesent eu urna vel tellus blandit blandit. Vivamus
-                    quis eros vel libero faucibus tincidunt eu sed enim. Fusce tellus dolor, bibendum id felis nec, rhoncus tempor diam.
-                    Pellentesque mollis eu nunc vitae fermentum. Proin eget semper dolor. Nullam id felis non sem dictum elementum eu quis
-                    sapien. Donec nec venenatis mauris, fringilla imperdiet lorem.
-                     Phasellus id mauris augue. Curabitur ut ligula elit. Mauris vel mi eu neque luctus varius vel sed eros.</p>
-                <h2>price</h2>
-                <br />
-
-                <Ratings
-                    rating={this.state.rating}
-                    widgetRatedColors="rgb(255, 209, 26)"
-                    widgetHoverColors="rgb(255, 209, 26)"
-                    changeRating={this.changeRating.bind(this)}>
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                </Ratings>
-                <br />
-                <ReactMapGL className="mapMargins" {...this.state.viewport} mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
-                    onViewportChange={(viewport) => this.setState({ viewport })}>
-                    <Marker latitude={21.6394345} longitude={39.1322110} offsetLeft={0} offsetTop={0} >
-                        {/* offsetLeft={-20} offsetTop={-10}  */}
-                        <img src={markerImg} />
-                    </Marker>
-                </ReactMapGL>
-
-                {this.state.reviews != null && this.state.reviews.map((item) => { return <ReviewCards data={item} /> })}
-                <h2>Add review</h2>
-                <Form.Control as="textarea" rows="3" onChange={this.inputChange.bind(this)} />
-                <input onClick={this.postreview.bind(this)} type="button" value="submit" />
-
-
-                <h2>book it button</h2>
-
+                        <div style={{ width: "60%", marginLeft: "5px" }}>
+                            <Form.Control style={{ height: "150px" }} as="textarea" rows="2" size='sm' onChange={this.inputChange.bind(this)} />
+                            <input onClick={this.postreview.bind(this)} type="button" value="submit" />
+                        </div>
+                    </div>}
 
             </div>
+
         )
     }
 }

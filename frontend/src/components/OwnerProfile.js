@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import axios from 'axios'
-import decoded from 'jwt-decode'
-import {Button} from 'react-bootstrap'
+
 class Profile extends Component {
   constructor() {
     super()
     this.state = {
-      firstname: '',
-      lastname: '',
-      phonenumber: '',
+      first_name: '',
+      last_name: '',
+      phoneNumber: '',
       email: '',
       errors: {}
     }
   }
   componentDidMount() {
     console.log("profile");
+    
     const token = localStorage.usertoken
     if(token){
       const decoded = jwt_decode(token)
+    
     console.log(decoded)
     console.log(this.state.first_name);
     // console.log("fffffff");
@@ -26,23 +26,24 @@ class Profile extends Component {
     }else{
       this.props.history.push('/CustomerLogin')
     }
+    
   }
   render() {
     return (
       <div className="container">
         <div className="jumbotron mt-5">
           <div className="col-sm-8 mx-auto">
-            <h1 className="text-center">PROFILE</h1>
+            <h1 className="text-center">Owner PROFILE</h1>
           </div>
           <table className="table col-md-6 mx-auto">
             <tbody>
               <tr>
                 <td>Fist Name</td>
-                <td>{this.state.firstname}</td>
+                <td>{this.state.first_name}</td>
               </tr>
               <tr>
                 <td>Last Name</td>
-                <td>{this.state.lastname}</td>
+                <td>{this.state.last_name}</td>
               </tr>
               <tr>
                 <td>Email</td>
@@ -50,7 +51,7 @@ class Profile extends Component {
               </tr>
               <tr>
                 <td>Phone Number</td>
-                <td>{this.state.phonenumber}</td>
+                <td>{this.state.phoneNumber}</td>
               </tr>
               <tr>
                 <td>Change Password</td>
@@ -58,11 +59,7 @@ class Profile extends Component {
               </tr>
             </tbody>
           </table>
-          <Button href="/EditProfile" variant='secondary' type="submit">Edit Profile</Button>
         </div>
-        <tr> 
-            {/* <div class="button_cont" align="center"><a class="example_a" href="/EditProfile" target="_blank" rel="nofollow noopener">Edit Profile</a></div> */}
-        </tr>
       </div>
     )
   }

@@ -8,11 +8,15 @@ const userSchema = new Schema(
   {
     firstname: String,
     lastname: String,
-    password: String,
+    password: {
+      type:String,
+      required: true
+    },
     phonenumber:String,
     email: {
       type: String,
-      unique:true
+      unique:true,
+      required: true
     },
     type: Number // 1 customer  2 seller 
   },
