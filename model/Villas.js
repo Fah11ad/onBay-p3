@@ -5,7 +5,6 @@ const villaSchema = mongoose.Schema({
     name:
     {
         type: String
-        // required: true
     },
     owner: {
         type: Schema.Types.ObjectId,
@@ -32,14 +31,12 @@ const villaSchema = mongoose.Schema({
         },
         reviewtext: String
     }],
-    // rateNum:{type:Number},
-    // ratingSum:{type:Number},
     x: { type: String },
     y: { type: String },
-    facilities: { type: String },
+    facilities: [{
+        type: String
+    }],
     area: { type: String }
-
-
 }, { timestamps: true })
 
 module.exports = mongoose.model('Villas', villaSchema)

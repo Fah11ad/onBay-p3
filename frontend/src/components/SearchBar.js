@@ -1,33 +1,21 @@
 import React, { Component } from 'react'
-// import { Card, Button, Image, Form, Row, Col } from 'react-bootstrap'
-// import { NavLink } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
 import '../App.css'
 import axios from "axios"
 import { Route, BrowserRouter, Switch, withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 
 export default class CustomTables extends Component {
-    // initlaize state (1-imp)
-    constructor(props) {
-        super(props)
 
-        //(4-imp) Bind those below methods to **this** by adding the following lines of code to the constructor
-        this.onChangeCity = this.onChangeCity.bind(this);
-        this.onChangeStartDate = this.onChangeStartDate.bind(this);
-        this.onChangeEndDate = this.onChangeEndDate.bind(this);
-        this.onChangeGuests = this.onChangeGuests.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-        //(4-imp) ----- End -------
 
-        this.state = {
-            city: '',
-            startDate: '',
-            endDate: '',
-            guests: '',
-            bookings: null,
-            villas: null,
-            results:null
-        }
+    state = {
+        city: '',
+        startDate: '',
+        endDate: '',
+        guests: '',
+        bookings: null,
+        villas: null,
+        results: null
     }
 
     componentDidMount() {
@@ -42,40 +30,33 @@ export default class CustomTables extends Component {
     }
 
     //Methods to update state (2-imp)
-    onChangeCity(e) {
+    onChangeCity = (e) => {
         this.setState({
             city: e.target.value
         })
     }
 
-    onChangeStartDate(e) {
+    onChangeStartDate = (e) => {
         this.setState({
             startDate: e.target.value
         })
     }
 
-    onChangeEndDate(e) {
+    onChangeEndDate = (e) => {
         this.setState({
             endDate: e.target.value
         })
     }
 
-    onChangeGuests(e) {
+    onChangeGuests = (e) => {
         this.setState({
             guests: e.target.value
         })
     }
 
     //Submit event Method of the Form & check the output(3-imp)
-    onSubmit(e) {
+    onSubmit = (e) => {
         e.preventDefault()
-
-        console.log('Form submitted:');
-        console.log(`City: ${this.state.city}`);
-        console.log(`Start Date: ${this.state.startDate}`);
-        console.log(`End Date: ${this.state.endDate}`);
-        console.log(`Guests: ${this.state.guests}`);
-
         let searchResult = []
 
         let filteredVillas = this.state.villas.filter(vItem => {
@@ -84,7 +65,7 @@ export default class CustomTables extends Component {
 
         filteredVillas.map(item => {
             let filteredBooking = this.state.bookings.filter(bItem => {
-                return item._id == bItem.villa //&& (this.state.startDate > bItem.endAt || bItem.startAt > this.state.endDate)
+                return item._id == bItem.villa
             })
 
             if (filteredBooking.length > 0) {
@@ -99,34 +80,19 @@ export default class CustomTables extends Component {
         })
 
 
-        this.setState({results:searchResult})
-        console.log("results length: "+searchResult.length)
-        // searchResult.map(results => {
-        //     console.log("results")
-        //     console.log(results)
-        // })
+        this.setState({ results: searchResult })
+        console.log("results length: " + searchResult.length)
 
-        // <Redirect to={{
-        //     pathname: '/results',
-        //     state: { results: this.state.results }
-        //   }}/>
-        //Reset the form after submition (3-imp)
-        // this.setState({
-        //     city: '',
-        //     startDate: '',
-        //         endDate: '',
-        //         guests: ''
-        // })    
     }
 
     render() {
         return (
             <div>
-                {this.state.results != null && 
-                <Redirect to={{
-                    pathname: '/Results',
-                    state: { results: this.state.results }
-                  }}/>
+                {this.state.results != null &&
+                    <Redirect to={{
+                        pathname: '/Results',
+                        state: { results: this.state.results, startAt: this.state.startDate, endAt: this.state.endDate }
+                    }} />
                 }
                 <div className="search-bar">
                     <form onSubmit={this.onSubmit}>

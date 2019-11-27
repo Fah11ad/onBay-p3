@@ -14,7 +14,7 @@ const userSchema = new Schema(
       type: String,
       unique:true
     },
-    type: Number // 1 customer  2 seller 3 admin
+    type: Number // 1 customer  2 seller 
   },
   { timestamps: true });
 

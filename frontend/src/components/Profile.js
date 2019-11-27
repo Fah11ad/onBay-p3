@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 
 class Profile extends Component {
+  
   constructor() {
     super()
     this.state = {
@@ -13,15 +14,12 @@ class Profile extends Component {
     }
   }
   componentDidMount() {
-    console.log("profile");
-    
     const token = localStorage.usertoken
     if(token){
       const decoded = jwt_decode(token)
     
     console.log(decoded)
     console.log(this.state.first_name);
-    // console.log("fffffff");
     this.setState(decoded.user)
     }else{
       this.props.history.push('/CustomerLogin')

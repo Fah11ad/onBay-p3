@@ -3,8 +3,10 @@ import vImage from "../assets/villaImg.jpg"
 import ReactMapGL, { Marker } from 'react-map-gl'
 import markerImg from "../assets/marker20.png"
 import Ratings from 'react-ratings-declarative'
-import { Carousel, Form,Jumbotron, Container} from 'react-bootstrap'
-
+import { Carousel, Form, Jumbotron, Container } from 'react-bootstrap'
+import jwt_decode from 'jwt-decode'
+import ReviewCards from "./ReviewCards"
+import axios from 'axios'
 
 export default class DetailPage extends Component {
 
@@ -12,6 +14,8 @@ export default class DetailPage extends Component {
         ratings: null,
         reviewText: null,
         reviews: null,
+        user: null,
+        facilitiesList: null,
         viewport: {
             width: 800,
             height: 400,
@@ -23,6 +27,48 @@ export default class DetailPage extends Component {
         }
     }
 
+    changeRating(newRating) {
+        console.log("rating: " + newRating)
+
+        let vId = this.props.location.state.data._id    //this.props.data._id
+
+        let params = {
+            customer: this.state.user,
+            ratevalue: newRating
+        }
+
+        let flag = 0
+        // this.state.ratings.map((item)=>console.log(item))
+        this.state.ratings.map((item) => {
+            if (item.customer == params.customer) {
+                flag = 1
+            }
+        })
+        if (flag == 0) {
+            console.log("You just rated")
+            axios.put("http://localhost:4000/villa/rate/" + vId, params)
+        } else {
+            console.log("Already rated !!!")
+        }
+    }
+
+    componentDidMount() {
+        let vId = this.props.location.state.data._id
+
+        const token = localStorage.usertoken
+        if (token) {
+            const decoded = jwt_decode(token)
+            this.setState({ user: decoded.user._id })
+        } else {
+            // this.props.history.push('/CustomerLogin')
+        }
+        axios.get("http://localhost:4000/villa/rates/" + vId)
+            .then(res => { this.setState({ ratings: res.data }) })
+
+        axios.get("http://localhost:4000/villa/review/" + vId)
+            .then(res => { this.setState({ reviews: res.data }) })
+    }
+
     inputChange(e) {
         this.setState({ reviewText: e.target.value })
     }
@@ -30,23 +76,28 @@ export default class DetailPage extends Component {
     postreview = () => {
         console.log("inside postreview")
 
-        // let vId = "5ddad46c22a3fa4bf8e8ebbd"
+        let vId = this.props.location.state.data._id
 
-        // let params = {
-        //     customer: "5dda3c8bbe53b816fc107993",
-        //     reviewtext: this.state.reviewText
-        // }
-        // let flag = 0
+        let params = {
+            customer: this.state.user,
+            reviewtext: this.state.reviewText
+        }
+        let flag = 0
+        axios.put("http://localhost:4000/villa/review/" + vId, params)
+    }
 
+    bookIT = () => {
 
-        // Axios.put("http://localhost:4000/villa/review/" + vId, params)
-
-        //    console.log(this.state.review)
+        let params = {
+            startAt: this.props.location.state.startAt,
+            endAt: this.props.location.state.endAt,
+            customer: this.state.user,
+            villa: this.props.location.state.data._id
+        }
+        axios.post("http://localhost:4000/booking/create", params)
     }
 
     render() {
-
-
         let ratingAv = 3
         return (
             <div>
@@ -56,17 +107,21 @@ export default class DetailPage extends Component {
                     style={{ width: 600, height: 500 }}
                     alt="First slide"
                 />
-                <h1>Villa Name</h1>
+                <h1>{this.props.location.state.data.name}</h1>
 
-                <Jumbotron fluid>
-                    <Container>
-                        <h1>Fluid jumbotron</h1>
-                        <p>
-                            This is a modified jumbotron that occupies the entire horizontal space of
-                            its parent.
-    </p>
-                    </Container>
-                </Jumbotron>
+                {this.state.user != null &&
+                    <ul class="actions" onClick={this.bookIT} >
+                        <li><a class="button alt">Book it</a></li>
+                    </ul>}
+                {this.state.user == null &&
+                    <ul class="actions">
+                        <li><a class="button alt" href="/CustomerSignUp" >login to book</a></li>
+                    </ul>
+                }
+
+                {this.props.location.state.data.facilities.map(item => {
+                    return <img src={require("../assets/" + item + ".png")} />
+                })}
 
                 <br />
                 <h2>Facilities icons</h2>
@@ -78,36 +133,32 @@ export default class DetailPage extends Component {
                      Phasellus id mauris augue. Curabitur ut ligula elit. Mauris vel mi eu neque luctus varius vel sed eros.</p>
                 <h2>price</h2>
                 <br />
-                {ratingAv > 0 &&
-                    <Ratings
-                        rating={this.state.rating}
-                        widgetRatedColors="rgb(255, 209, 26)"
-                    >
-                        <Ratings.Widget widgetEmptyColor={ratingAv >= 1 ? "rgb(255, 209, 26)" : "rgb(203,211,227)"} />
-                        <Ratings.Widget widgetEmptyColor={ratingAv >= 2 ? "rgb(255, 209, 26)" : "rgb(203,211,227)"} />
-                        <Ratings.Widget widgetEmptyColor={ratingAv >= 3 ? "rgb(255, 209, 26)" : "rgb(203,211,227)"} />
-                        <Ratings.Widget widgetEmptyColor={ratingAv >= 4 ? "rgb(255, 209, 26)" : "rgb(203,211,227)"} />
-                        <Ratings.Widget widgetEmptyColor={ratingAv >= 5 ? "rgb(255, 209, 26)" : "rgb(203,211,227)"} />
-                    </Ratings>}
-                <br />
 
+                <Ratings
+                    rating={this.state.rating}
+                    widgetRatedColors="rgb(255, 209, 26)"
+                    widgetHoverColors="rgb(255, 209, 26)"
+                    changeRating={this.changeRating.bind(this)}>
+                    <Ratings.Widget />
+                    <Ratings.Widget />
+                    <Ratings.Widget />
+                    <Ratings.Widget />
+                    <Ratings.Widget />
+                </Ratings>
+                <br />
                 <ReactMapGL className="mapMargins" {...this.state.viewport} mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
                     onViewportChange={(viewport) => this.setState({ viewport })}>
                     <Marker latitude={21.6394345} longitude={39.1322110} offsetLeft={0} offsetTop={0} >
                         {/* offsetLeft={-20} offsetTop={-10}  */}
                         <img src={markerImg} />
                     </Marker>
-                    {/* <Marker
-                        coordinates={[37.78, -122.41]}
-                        anchor="bottom">
-                        <img src={markerImg} />
-                    </Marker> */}
                 </ReactMapGL>
 
+                {this.state.reviews != null && this.state.reviews.map((item) => { return <ReviewCards data={item} /> })}
                 <h2>Add review</h2>
                 <Form.Control as="textarea" rows="3" onChange={this.inputChange.bind(this)} />
                 <input onClick={this.postreview.bind(this)} type="button" value="submit" />
-                {/* {this.state.reviews != null && this.state.reviews.map((item)=>{return <Reviewcards data={item} />})}  */}
+
 
                 <h2>book it button</h2>
 

@@ -15,7 +15,6 @@ onChangHandler=(e)=>{
         [e.target.name] : e.target.value,
         type: 1
     })
-    console.log(this.state)
 }
 onSubmitHandelr =(e)=>{
     e.preventDefault()
@@ -43,24 +42,15 @@ onSubmitHandelr =(e)=>{
                      <Form.Control type="string" placeholder=" Phone Number"  name ="phonenumber" 
                      onChange = {this.onChangHandler}/>
                  </Form.Group>
-                
-                
+             
                  <Form.Group controlId="formBasicEmail">
                      <Form.Control type="email" placeholder="Enter Email"  name ="email" 
                      onChange = {this.onChangHandler}/>
                  </Form.Group>
-                 
-                 {/* <Form.Group controlId="formBasicEmail">
-                     <Form.Control type="email" placeholder="re-Emial" />
-                 </Form.Group> */}
-
                  <Form.Group controlId="formBasicPassword">
                     <Form.Control type="password" placeholder="Password" name ="password" 
                      onChange = {this.onChangHandler}/>
                 </Form.Group>
-                {/* <Form.Group controlId="formBasicPassword">
-                    <Form.Control type="password" placeholder=" re-Password" />
-                </Form.Group> */}
                 <div className="btnn">
                 <Button variant='secondary' type="submit">
                    Sign Up

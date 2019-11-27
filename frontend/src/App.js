@@ -11,9 +11,8 @@ import CustomerLogin from './components/CustomerLogin'
 import CustomerSignUp from './components/CustomerSignUp'
 import Profile from './components/Profile'
 import DetailPage from "./components/DetailPage"
-
-
-import axios from 'axios'
+import NewVilla from "./components/NewVilla"
+import EditVilla from "./components/EditVilla"
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -40,10 +39,14 @@ class App extends Component {
     <BrowserRouter>
     <div className="App">
       <CustomNavbar />
+      {/* <NewVilla/> */}
       {/* <DetailPage/> */}
       <Switch>
       {/* <Route exact path="/" render={(props) => <Home {...props} response={this.state.response} />} /> */}
       <Route exact path="/" component={Home} />
+      <Route exact path="/NewVilla" component={NewVilla} />
+      <Route exact path="/EditVilla" component={EditVilla} />
+      <Route path="/VillaDetails" component={DetailPage} />
       <Route path="/OwnerLogin" component={OwnerLogin} />
       <Route path="/OwnerSignUp" component={OwnerSignUp} />
       <Route path="/AddVilla" component={AddVilla} />

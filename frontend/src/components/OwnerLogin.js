@@ -6,6 +6,7 @@ import { login } from '../functionAuth/functionAuth'
 
 export default class OwnerLogin extends Component {
     state ={}
+    
     onChangeHandler=(e)=>{
         this.setState({
             [e.target.name] : e.target.value
