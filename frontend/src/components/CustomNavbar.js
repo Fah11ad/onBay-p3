@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, Button} from 'react-bootstrap'
+import { Navbar, Nav, Button,Image} from 'react-bootstrap'
 import jwt_decode from 'jwt-decode'
 import '../App.css';
+import logos from "../assets/shalihat-logo.png"
 
 
 export default class CustomNavbar extends Component {
@@ -56,7 +57,7 @@ export default class CustomNavbar extends Component {
 
     return (
       <Navbar collapseOnSelect expand="lg"  variant="dark" style={{ backgroundColor: "#F6D55C"}}>
-        <Navbar.Brand href="/">OnBay</Navbar.Brand>
+        <Navbar.Brand href="/"><Image src={require("../assets/shalihat-logo.png")} style={{ width: '80px', height: '80px' }} /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           {/* <Nav className="mr-auto"  >
@@ -74,7 +75,7 @@ export default class CustomNavbar extends Component {
 
           {(localStorage.usertoken) ? null :
           <li className="nav-item">
-          <a className="nav-link" className="text-light" href="/CustomerLogin" tabindex="-1" aria-disabled="true">Login In</a>
+          <a className="nav-link" className="text-light" href="/CustomerLogin" tabindex="-1" aria-disabled="true">Sign in</a>
          </li>}
             
             {(localStorage.usertoken) ? null : 
@@ -94,13 +95,13 @@ export default class CustomNavbar extends Component {
         <li className="nav-item">
           <a className="nav-link "className="text-light"  href="/NewVilla" tabindex="-1" aria-disabled="true">Add new villa</a>
         </li>}
-        {(localStorage.usertoken) ?
+        {this.state.userType == 1 &&
         <li className="nav-item">
           <a className="nav-link "className="text-light"  href="/BookingList" tabindex="-1" aria-disabled="true">Bookings list</a>
-        </li> : null}
+        </li>}
         {(localStorage.usertoken) ? 
         <li className="nav-item">
-          <a className="nav-link "className="text-light" onClick={this.logout} href="/" tabindex="-1" aria-disabled="true">Log Out</a>
+          <a className="nav-link "className="text-light" onClick={this.logout} href="/" tabindex="-1" aria-disabled="true">Log out</a>
         </li> : null }
       
 </ul>

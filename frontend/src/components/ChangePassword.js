@@ -56,6 +56,7 @@ export default class ChangePassword extends Component {
                 <div className="top">Change Password</div>
                 <div className="form">
                     <Form onSubmit={this.onSubmitHandelr} noValidate>
+                    <table className="table col-md-6 mx-auto">
                         <Form.Group controlId="formBasicPassword">
                             <Form.Control type="password" placeholder="Password" name="password"
                                 onChange={this.onChangeHandler} />
@@ -64,13 +65,10 @@ export default class ChangePassword extends Component {
                             <Form.Control type="password" placeholder="New Password" name="newPassword"
                                 onChange={this.onChangeHandler} />
                         </Form.Group>
-
-                        <div className="btnn">
-                            <Button variant='secondary' type="submit">
-                                Change Password
-                </Button>
-
-                        </div>
+                        </table>
+                            <Button variant='secondary' type="submit" >
+                                Change Password </Button>
+                        
                     </Form>
 
                 </div>

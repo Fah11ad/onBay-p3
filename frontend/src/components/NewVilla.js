@@ -153,24 +153,24 @@ export default class NewVilla extends Component {
                             <div key={`default-${type}`} className="mb-3">
                                 <Row>
                                     <Col>
-
-                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Terrace" type={type} id="terrace" />
-                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Sport Court " type={type} id="sport court" />
-                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="WiFi" type={type} id="wifi" />
+                                        <Row>
+                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Terrace" type={type} id="terrace" /></Row>
+                                       <Row> <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Sport Court " type={type} id="sport court" /></Row>
+                                      <Row>  <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="WiFi" type={type} id="wifi" />
+                                        </Row>
+                                    </Col>
+                                    <Col>
+                                        <Row>
+                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Kitchen" type={type} id="kitchen" /></Row>
+                                       <Row> <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Garden" type={type} id="garden" /></Row>
+                                      <Row>  <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Grill" type={type} id="grill" /></Row>
 
                                     </Col>
                                     <Col>
 
-                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Kitchen" type={type} id="kitchen" />
-                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Garden" type={type} id="garden" />
-                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Grill" type={type} id="grill" />
-
-                                    </Col>
-                                    <Col>
-
-                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Playground" type={type} id="playground" />
-                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Children Swimming Pool" type={type} id="cswimming pool" />
-                                        <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label=" Swimming Pool" type={type} id="swimming pool" />
+                                       <Row> <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="Playground" type={type} id="playground" /></Row>
+                                        <Row><Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label="children Swimming Pool" type={type} id="cswimming pool" /></Row>
+                                       <Row> <Form.Check style={{ float: "left" }} onChange={this.onChangHandler} label=" Swimming Pool" type={type} id="swimming pool" /></Row>
 
                                     </Col>
                                 </Row>
@@ -190,8 +190,8 @@ export default class NewVilla extends Component {
 
                             </div>
                         </form>
-
-                        <button onClick={this.onSubmit} className="btnn" type="submit">ADD</button>
+                        <Button onClick={this.onSubmit} variant='secondary' type="submit">Add</Button>
+                        {/* <button onClick={this.onSubmit} className="btnn" type="submit">ADD</button> */}
 
 
 

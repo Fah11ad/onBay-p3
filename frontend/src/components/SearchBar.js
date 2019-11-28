@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
+import { Form, Button, Alert } from 'react-bootstrap'
 import '../App.css'
 import axios from "axios"
 import { Route, BrowserRouter, Switch, withRouter } from 'react-router-dom'
@@ -143,9 +144,8 @@ export default class CustomTables extends Component {
                             <div className="form-group col-md-2">
                                 <label className="hide-chr"> - </label>
                                 <div>
-                                <button className="btnn"  type="submit">
-                                    SERCH
-                                 </button>
+                                <Button variant='secondary' type="submit">Search</Button>
+                                {/* <button className="btnn"  type="submit">Search</button> */}
                                     {/* <button type="submit" className="btn btn-dark search-btn"
                                     //(5-imp)
 

@@ -1,66 +1,79 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {  Form, Button,
+import {
+    Form, Button,
 } from 'react-bootstrap'
 import React, { Component } from 'react'
-import { register }  from '../functionAuth/functionAuth'
-import jwt_decode from 'jwt-decode'
-import axios from 'axios'
+import { register } from '../functionAuth/functionAuth'
 
 
-export default class CustomerSignUp extends Component {
-    state ={}
+
+export default class OwnerSignUp extends Component {
+    state = {}
 
 
-onChangHandler=(e)=>{
-    this.setState({
-        [e.target.name] : e.target.value,
-        type: 1
-    })
-}
-onSubmitHandelr = async (e)=>{
-    e.preventDefault()
-    await register(this.state)
-    this.props.history.push('/CustomerLogin')
-}
+    onChangHandler = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value,
+            type: 1
+
+        })
+        console.log(this.state)
+    }
+    onSubmitHandelr = (e) => {
+        e.preventDefault()
+        register(this.state)
+        this.props.history.push('/OwnerLogin')
+    }
     render() {
-      
+
 
         return (
-            <div className="container">
-            <div className="jumbotron mt-5">
-              <div className="col-sm-8 mx-auto">
-                <h1 className="text-center">PROFILE</h1>
-              </div>
-              <Form onSubmit={this.onSubmitHandelr}>
-              <table className="table col-md-6 mx-auto">
-                <tbody>
-                  <tr>
-                    <td>Fist Name</td>
-                    <td>
-                        <input onChange={this.onChangeHandler} type="text" name="firstname" placeholder={this.state.firstname}/>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Last Name</td>
-                    <td><input onChange={this.onChangeHandler} type="text" name="lastname" placeholder={this.state.lastname}/></td>
-                  </tr>
-                  <tr>
-                    <td>Email</td>
-                    <td>{this.state.email}</td>
-                  </tr>
-                  <tr>
-                    <td>Phone Number</td>
-                    <td><input onChange={this.onChangeHandler} type="text" name="phonenumber" placeholder={this.state.phonenumber}/></td>
-                  </tr> 
-                </tbody>
-              </table>
-              <Button variant='secondary' type="submit"></Button>
-              </Form>
-              </div>
-            <tr> 
-                <td><div class="button_cont" align="center"><a class="example_a" href="/Profile" target="_blank" rel="nofollow noopener">Edit Profile</a></div></td>
-            </tr>
-          </div>
+            <div className="formcontainer">
+                <div className="top">SIGN UP</div>
+                <div className="form">
+                    <Form onSubmit={this.onSubmitHandelr}>
+
+                        <Form.Group controlId="Firstname">
+                            <Form.Control type="string" placeholder=" First Name" name="firstname"
+                                onChange={this.onChangHandler} />
+                        </Form.Group>
+                        <Form.Group controlId="Lastname">
+                            <Form.Control type="string" placeholder=" Last Name" name="lastname"
+                                onChange={this.onChangHandler} />
+                        </Form.Group>
+                        <Form.Group controlId="PhoneNumber">
+                            <Form.Control type="string" placeholder=" Phone Number" name="phonenumber"
+                                onChange={this.onChangHandler} />
+                        </Form.Group>
+
+
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Control type="email" placeholder="Enter Email" name="email"
+                                onChange={this.onChangHandler} />
+                        </Form.Group>
+
+                        {/* <Form.Group controlId="formBasicEmail">
+                     <Form.Control type="email" placeholder="re-Emial" />
+                 </Form.Group> */}
+
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Control type="password" placeholder="Password" name="password"
+                                onChange={this.onChangHandler} />
+                        </Form.Group>
+                        {/* <Form.Group controlId="formBasicPassword">
+                    <Form.Control type="password" placeholder=" re-Password" />
+                </Form.Group> */}
+
+                        <button className="btnn" type="submit">SING UP</button>
+
+                        {/* <div className="btnn">
+                <Button variant='secondary' type="submit">
+                   Sign Up
+                </Button>
+                </div> */}
+                    </Form>
+                </div>
+            </div>
         )
     }
 }

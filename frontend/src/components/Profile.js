@@ -15,6 +15,7 @@ class Profile extends Component {
     }
   }
   componentDidMount() {
+    
     console.log("profile");
     const token = localStorage.usertoken
     if(token){
@@ -53,12 +54,13 @@ class Profile extends Component {
                 <td>{this.state.phonenumber}</td>
               </tr>
               <tr>
-                <td>Change Password</td>
+                {/* <td>Change Password</td> */}
+                <td><div class="button_cont" align="center"><a class="example_a" href="/EditProfile" target="_blank" rel="nofollow noopener">Edit Profile</a></div></td>
                 <td><div class="button_cont" align="center"><a class="example_a" href="/ChangePassword" target="_blank" rel="nofollow noopener">Change Password</a></div></td>
               </tr>
             </tbody>
           </table>
-          <Button href="/EditProfile" variant='secondary' type="submit">Edit Profile</Button>
+          {/* <Button href="/EditProfile" variant='secondary' type="submit">Edit Profile</Button> */}
         </div>
         <tr> 
             {/* <div class="button_cont" align="center"><a class="example_a" href="/EditProfile" target="_blank" rel="nofollow noopener">Edit Profile</a></div> */}

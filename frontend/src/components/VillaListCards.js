@@ -38,7 +38,7 @@ export default class VillaListCards extends Component {
                     <br />
                     <div>
                         <button onClick={this.goToEdit} id={this.props.data._id} style={{ width: "10%", margin: "5px" }} type="button" class="btn btn-warning">Edit</button>
-                        <button onClick={this.deleteVilla} id={this.props.data._id} style={{ width: "10%", margin: "5px" }} type="button" class="btn btn-warning">Delet</button>
+                        <button onClick={this.deleteVilla} id={this.props.data._id} style={{ width: "10%", margin: "5px" }} type="button" class="btn btn-warning">Delete</button>
                     </div>
                 </div>
 

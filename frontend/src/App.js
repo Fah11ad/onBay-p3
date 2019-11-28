@@ -17,7 +17,7 @@ import VillasLists from "./components/VillaLists"
 import BookingList from "./components/BookingList"
 import EditProfile from "./components/EditProfile"
 import ChangePassword from "./components/ChangePassword"
-
+import NotFound from "./components/NotFound"
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -64,6 +64,7 @@ class App extends Component {
       <Route path="/Results" component={SearchResults} />
       <Route path='/profile' component={Profile} />
       <Route path='/EditProfile' component={EditProfile} />
+      <Route path="*" component={NotFound} />
 
       </Switch>   
     </div>

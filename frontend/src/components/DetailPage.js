@@ -8,11 +8,13 @@ import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 import ReviewCards from "./ReviewCards"
 import { Alert } from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
 
 export default class DetailPage extends Component {
 
     state = {
         ratings: null,
+        click:false,
         reviewText: null,
         reviews: null,
         user: null,
@@ -23,8 +25,8 @@ export default class DetailPage extends Component {
             height: 400,
             // latitude: 37.78,
             // longitude: -122.41,
-            latitude: 21.6394345,
-            longitude: 39.1322110,
+            latitude: 21.6394345, //this.props.location.state.data.x
+            longitude: 39.1322110, //this.props.location.state.data
             zoom: 12
         }
     }
@@ -85,8 +87,10 @@ export default class DetailPage extends Component {
             customer: this.state.user,
             reviewtext: this.state.reviewText
         }
-        let flag = 0
+        // let flag = 0
         axios.put("http://localhost:4000/villa/review/" + vId, params)
+        .then(()=>{window.location.reload()})
+        
     }
 
     bookIT = () => {
@@ -101,9 +105,17 @@ export default class DetailPage extends Component {
         axios.post("http://localhost:4000/booking/create", params)
     }
 
+    logIN = () =>{
+        this.setState({click:true})
+    }
+
     render() {
         return (
             <div>
+                {this.state.click == true &&
+                        <Redirect to={{
+                            pathname: '/CustomerLogin'
+                        }} />}
                 <div className="detalilsform">
                     <div>
                         <img className="villimage"
@@ -128,11 +140,11 @@ export default class DetailPage extends Component {
                         {this.state.user != null &&
                             <button type="button" class="btn btn-warning" onClick={this.bookIT}>Book Now</button>}
                         {this.state.user == null &&
-                            <button type="button" class="btn btn-warning" href="/CustomerSignUp">login to book</button>}
+                            <button onClick={this.logIN} type="button" class="btn btn-warning" >login to book</button>}
                             <br/>
                             <br/>
                         {this.state.checked == true &&
-                            <Alert style={{ marginLeft: "60%", marginRight: "10%", backgroundColor: "rgb(212,237,218)", color: "green" }} color="success">Successfully added new villa</Alert>
+                            <Alert style={{ marginLeft: "60%", marginRight: "10%", backgroundColor: "rgb(212,237,218)", color: "green" }} color="success">Successfully Booked a villa</Alert>
                         }
 
                     </div>

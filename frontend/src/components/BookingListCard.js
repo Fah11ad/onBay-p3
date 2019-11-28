@@ -32,7 +32,7 @@ export default class BookingListCard extends Component {
                     <h3>To: {toD[0]}</h3>
                     <br />
                     <div>
-                        <button onClick={this.deleteVilla} id={this.props.data._id} style={{ width: "10%", margin: "5px" }} type="button" class="btn btn-warning">Delet</button>
+                        <button onClick={this.deleteVilla} id={this.props.data._id} style={{ width: "10%", margin: "5px" }} type="button" class="btn btn-warning">Delete</button>
                     </div>
                 </div>
 

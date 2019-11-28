@@ -16,15 +16,14 @@ export default class BookingList extends Component {
             this.setState({ user: decoded.user._id })
         }
 
-        axios.get("http://localhost:4000/booking/5dde09e10783f50308b4b583")
+        axios.get("http://localhost:4000/booking/"+id)
             .then(res => {
                 console.log(res.data)
                 this.setState({ userVillas: res.data })
             })
-            .catch(err => { console.log(err) })
-
-        
+            .catch(err => { console.log(err) })     
     }
+
 
     render() {
         return (
