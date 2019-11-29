@@ -14,7 +14,7 @@ const Grid = require('gridfs-stream')
 const PORT = process.env.PORT || 5600;
 
 
-var allowedOrigins = ["http://localhost:5600", "http://localhost:3001"];
+var allowedOrigins = ["http://localhost:5600", "https://project3-shalihat.herokuapp.com"];
 
 app.use(
   cors({
