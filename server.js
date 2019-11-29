@@ -87,12 +87,6 @@ app.use(
 //   })
 // })
 
-//serves all our static files from the build directory.
-app.use(express.static(path.join(__dirname, "build")));
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-
 mongoose.connect(
   process.env.DEV_DB,
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -102,6 +96,13 @@ mongoose.connect(
     console.log("connected to mongoDB");
   }
 );
+
+
+//serves all our static files from the build directory.
+app.use(express.static(path.join(__dirname, "build")));
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
 app.use("/user",userRoutes)
 app.use("/villa",villaRoutes)
