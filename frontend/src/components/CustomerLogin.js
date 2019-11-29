@@ -15,11 +15,9 @@ export default class CustomerLogin extends Component {
         e.preventDefault()
         await login(this.state)
         this.props.history.push('/profile')
-        console.log(this.props.history);
         
     }
     render() {
-        console.log(this.state)
         return (
            <div className= "formcontainer">
                 <div className="top">LOG IN</div>

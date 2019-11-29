@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import { Form, Button, Row, Col,Alert } from 'react-bootstrap'
+import { Form, Row, Col,Alert } from 'react-bootstrap'
 import axios from 'axios'
-import Message from './Message'
 export default class EditVilla extends Component {
 
     state = {
@@ -34,8 +33,6 @@ export default class EditVilla extends Component {
 
     onChangHandler = e => {
         this.setState({ [e.target.name]: e.target.value, })
-        console.log("in onChange")
-        console.log(e.target.id)
 
         if (e.target.id != "") {
             let temp = this.state.facilities.slice()
@@ -62,9 +59,7 @@ export default class EditVilla extends Component {
         }
 
         this.setState({checked:true})
-        console.log("params")
-        console.log(params)
-        axios.put("http://localhost:4000/villa/"+vID,params)
+        axios.put("/villa/"+vID,params)
     }
 
     render() {

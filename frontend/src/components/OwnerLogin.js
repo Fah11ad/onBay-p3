@@ -16,11 +16,9 @@ export default class OwnerLogin extends Component {
         e.preventDefault()
         await login(this.state)
         this.props.history.push('/profile')
-        console.log(this.props.history);
         
     }
     render() {
-        console.log(this.state)
         return (
            <div className= "formcontainer">
                 <div className="top">LOG IN</div>
@@ -38,13 +36,6 @@ export default class OwnerLogin extends Component {
                 <button className="btnn"  type="submit">
                   LOG IN
                 </button>
-                
-                {/* <div className="btnn">
-                <Button variant='secondary' type="submit">
-                   LOG IN
-                </Button>
-             
-                </div> */}
              </Form>
                             
             </div>

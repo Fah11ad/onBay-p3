@@ -13,15 +13,13 @@ export default class SearchCards extends Component {
 
     deleteVilla = () => {
         let vID = this.props.data._id
-        Axios.delete("http://localhost:4000/villa/" + vID)
+        Axios.delete("/villa/" + vID)
     }
 
     render() {
         let avg = 0
         let sum = 0
         let count = 0
-        console.log("ratings size")
-        console.log(this.props.data.ratings.length)
         if (this.props.data.ratings.length > 0) {
             this.props.data.ratings.map(rItem => {
                 sum += rItem.ratevalue
@@ -30,7 +28,6 @@ export default class SearchCards extends Component {
         }
 
         avg = sum / count
-        console.log("the avg: " + Math.round(avg))
 
         return (
 

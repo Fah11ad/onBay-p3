@@ -16,9 +16,8 @@ export default class BookingList extends Component {
             this.setState({ user: decoded.user._id })
         }
 
-        axios.get("http://localhost:4000/booking/"+id)
+        axios.get("/booking/"+id)
             .then(res => {
-                console.log(res.data)
                 this.setState({ userVillas: res.data })
             })
             .catch(err => { console.log(err) })     

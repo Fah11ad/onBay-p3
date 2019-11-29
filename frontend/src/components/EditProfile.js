@@ -3,8 +3,6 @@ import { Form, Button, Alert } from 'react-bootstrap'
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
-import SweetAlert from 'sweetalert2-react';
-import { login } from '../functionAuth/functionAuth'
 class EditProfile extends Component {
     state = {
         firstname: jwt_decode(localStorage.usertoken).user.firstname,
@@ -24,14 +22,11 @@ class EditProfile extends Component {
             lastname: this.state.lastname,
             phonenumber: this.state.phonenumber
         }
-        // 5dde542dfb99cbfd790c1e9e
-        axios.put(`http://localhost:4000/user/changedetails/${this.state.user._id}`, obj)
+        axios.put(`/user/changedetails/${this.state.user._id}`, obj)
         .then(res => {
             localStorage.removeItem('usertoken')
-            console.log(res.data.user)
-            axios.post('http://localhost:4000/user/edit/token' , res.data.user)
+            axios.post('/user/edit/token' , res.data.user)
           .then ((fes)=> {
-            console.log(fes)   
             localStorage.setItem('usertoken' , fes.data)
                  setTimeout(() => {
                 this.props.history.push('/profile')
@@ -42,7 +37,6 @@ class EditProfile extends Component {
     }
        
         render() {
-          console.log(this.state.lastname)
             return (
               <div className="formcontainer">
               <div className="top">Edit Profile</div>

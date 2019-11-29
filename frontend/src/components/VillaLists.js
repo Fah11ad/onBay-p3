@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import '../App.css';
-import vImage from "../assets/villaImg.jpg"
 import jwt_decode from 'jwt-decode'
 import axios from "axios"
-import { Redirect } from 'react-router-dom'
 import VillaListCards from './VillaListCards'
 
 export default class SearchResults extends Component {
@@ -22,9 +20,8 @@ export default class SearchResults extends Component {
             this.setState({ user: decoded.user._id })
         }
 
-        axios.get("http://localhost:4000/villa/owner/" + id)
+        axios.get("/villa/owner/" + id)
             .then(res => {
-                console.log(res.data)
                 this.setState({ ownersVillas: res.data })
             })
             .catch(err => { console.log(err) })
@@ -35,11 +32,8 @@ export default class SearchResults extends Component {
         return (
             <div >
                 {this.state.ownersVillas != null && this.state.ownersVillas.map(item=>{
-                return <VillaListCards data={item} />
-                     
+                return <VillaListCards data={item} />                 
                 })}
-               
-
             </div>
         )
     }

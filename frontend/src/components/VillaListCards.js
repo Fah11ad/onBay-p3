@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import '../App.css';
 import vImage from "../assets/villaImg.jpg"
-import jwt_decode from 'jwt-decode'
 import axios from "axios"
 import { Redirect } from 'react-router-dom'
 
@@ -10,7 +9,7 @@ export default class VillaListCards extends Component {
     state = { checked: false }
     
     deleteVilla = (e) => {
-        axios.delete("http://localhost:4000/villa/" + e.target.id)
+        axios.delete("/villa/" + e.target.id)
         .then(()=>{window.location.reload()})
 
     }

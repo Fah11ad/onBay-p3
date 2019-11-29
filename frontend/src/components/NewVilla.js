@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import { Form, Button, Row, Col,Alert } from 'react-bootstrap'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
 
 export default class NewVilla extends Component {
 
@@ -47,16 +46,16 @@ export default class NewVilla extends Component {
         const formData = new FormData()
 
         formData.append('img', file[0])
-        console.log("file is ")
         let im = ""
         if (file.length != 0) {
             im = file[0].name
-            axios.post("http://localhost:4000/uploadimage/", formData)
-                .then(r => {
-                    console.log("adding image")
-                    console.log(r)
-                })
-                .catch(err => console.log(err))
+
+            // axios.post("/uploadimage/", formData)
+            //     .then(r => {
+            //         console.log("adding image")
+            //         console.log(r)
+            //     })
+            //     .catch(err => console.log(err))
         }
 
         let params = {
@@ -74,7 +73,7 @@ export default class NewVilla extends Component {
         }
 
 
-        axios.post("http://localhost:4000/villa/create", params)
+        axios.post("/villa/create", params)
 
         this.setState({ checked: true })
 

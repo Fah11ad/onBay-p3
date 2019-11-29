@@ -20,7 +20,7 @@ export default class ChangePassword extends Component {
         const decoded = jwt_decode(token)
 
 
-        axios.put(`http://localhost:4000/user/changepass/${decoded.user._id}`, {
+        axios.put(`/user/changepass/${decoded.user._id}`, {
             password: this.state.password,
             newPassword: this.state.newPassword
         })
@@ -34,7 +34,6 @@ export default class ChangePassword extends Component {
             })
     }
     render() {
-        console.log(this.state)
         return (
 
             <div className="formcontainer">

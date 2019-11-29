@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 const User = require('../model/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const dotenv = require("dotenv/config")
 
 
-process.env.SECRET_KEY = 'secret'
+
 // rigister steps (1-regist)
 router.post('/register', (req, res) => {
     const newUser = {
@@ -18,7 +19,6 @@ router.post('/register', (req, res) => {
         type: req.body.type
     }
 
-    console.log(newUser)
     // Search if email is exist or not
     User.findOne({ email: req.body.email })
         .then(user => {
@@ -32,7 +32,7 @@ router.post('/register', (req, res) => {
                     User.create(newUser)
                         .then(user => res.send("user created" + newUser.email))
                         .catch(err => res.send(err))
-                    console.log(bcrypt.compareSync(req.body.password, newUser.password))
+                    // console.log(bcrypt.compareSync(req.body.password, newUser.password))
                     // res.send("s")
                 })
             }
@@ -76,7 +76,7 @@ router.post('/login', (req, res) => {
 
                     user.password = "" //  "" we don't want password to appear
                     var paylod = { user }
-                    let token = jwt.sign(paylod, 'secret', { expiresIn: 1440 })
+                    let token = jwt.sign(paylod, process.env.SECRET_KEY, { expiresIn: 1440 })
                     res.send(token)
                 }
                 // if password not the same
@@ -139,7 +139,7 @@ router.post('/edit/token' , (req , res )=>{
         if (user) {
 
                 var paylod = { user }
-                let token = jwt.sign(paylod, 'secret', { expiresIn: 1440 })
+                let token = jwt.sign(paylod, process.env.SECRET_KEY, { expiresIn: 1440 })
                 res.send(token)
 
         }
@@ -177,7 +177,7 @@ module.exports = router
 // const jwt = require('jsonwebtoken');
 
 
-// process.env.SECRET_KEY = 'secret'
+
 // // rigister steps (1-regist)
 // router.post('/register', (req, res) => {
 //     const newUser = {

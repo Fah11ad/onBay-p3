@@ -14,7 +14,7 @@ export default class DetailPage extends Component {
 
     state = {
         ratings: null,
-        click:false,
+        click: false,
         reviewText: null,
         reviews: null,
         user: null,
@@ -23,8 +23,6 @@ export default class DetailPage extends Component {
         viewport: {
             width: 800,
             height: 400,
-            // latitude: 37.78,
-            // longitude: -122.41,
             latitude: 21.6394345, //this.props.location.state.data.x
             longitude: 39.1322110, //this.props.location.state.data
             zoom: 12
@@ -32,18 +30,16 @@ export default class DetailPage extends Component {
     }
 
     changeRating(newRating) {
-        console.log("rating: " + newRating)
 
-        let vId = this.props.location.state.data._id    //this.props.data._id
+        let vId = this.props.location.state.data._id  
 
-        this.setState({newRating:newRating})
+        this.setState({ newRating: newRating })
         let params = {
             customer: this.state.user,
             ratevalue: newRating
         }
 
         let flag = 0
-        // this.state.ratings.map((item)=>console.log(item))
         this.state.ratings.map((item) => {
             if (item.customer == params.customer) {
                 flag = 1
@@ -51,7 +47,7 @@ export default class DetailPage extends Component {
         })
         if (flag == 0) {
             console.log("You just rated")
-            axios.put("http://localhost:4000/villa/rate/" + vId, params)
+            axios.put("/villa/rate/" + vId, params)
         } else {
             console.log("Already rated !!!")
         }
@@ -67,10 +63,10 @@ export default class DetailPage extends Component {
         } else {
             // this.props.history.push('/CustomerLogin')
         }
-        axios.get("http://localhost:4000/villa/rates/" + vId)
+        axios.get("/villa/rates/" + vId)
             .then(res => { this.setState({ ratings: res.data }) })
 
-        axios.get("http://localhost:4000/villa/review/" + vId)
+        axios.get("/villa/review/" + vId)
             .then(res => { this.setState({ reviews: res.data }) })
     }
 
@@ -79,18 +75,18 @@ export default class DetailPage extends Component {
     }
 
     postreview = () => {
-        console.log("inside postreview")
-
         let vId = this.props.location.state.data._id
 
         let params = {
             customer: this.state.user,
             reviewtext: this.state.reviewText
         }
-        // let flag = 0
-        axios.put("http://localhost:4000/villa/review/" + vId, params)
-        .then(()=>{window.location.reload()})
-        
+
+        axios.put("/villa/review/" + vId, params)
+            .then(() => {
+                window.location.reload()
+            }
+            )
     }
 
     bookIT = () => {
@@ -101,21 +97,21 @@ export default class DetailPage extends Component {
             customer: this.state.user,
             villa: this.props.location.state.data._id
         }
-        this.setState({checked:true})
-        axios.post("http://localhost:4000/booking/create", params)
+        this.setState({ checked: true })
+        axios.post("/booking/create", params)
     }
 
-    logIN = () =>{
-        this.setState({click:true})
+    logIN = () => {
+        this.setState({ click: true })
     }
 
     render() {
         return (
             <div>
                 {this.state.click == true &&
-                        <Redirect to={{
-                            pathname: '/CustomerLogin'
-                        }} />}
+                    <Redirect to={{
+                        pathname: '/CustomerLogin'
+                    }} />}
                 <div className="detalilsform">
                     <div>
                         <img className="villimage"
@@ -141,8 +137,8 @@ export default class DetailPage extends Component {
                             <button type="button" class="btn btn-warning" onClick={this.bookIT}>Book Now</button>}
                         {this.state.user == null &&
                             <button onClick={this.logIN} type="button" class="btn btn-warning" >login to book</button>}
-                            <br/>
-                            <br/>
+                        <br />
+                        <br />
                         {this.state.checked == true &&
                             <Alert style={{ marginLeft: "60%", marginRight: "10%", backgroundColor: "rgb(212,237,218)", color: "green" }} color="success">Successfully Booked a villa</Alert>
                         }

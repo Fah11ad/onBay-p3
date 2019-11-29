@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Navbar, Nav, Button,Image} from 'react-bootstrap'
 import jwt_decode from 'jwt-decode'
 import '../App.css';
-import logos from "../assets/shalihat-logo.png"
 
 
 export default class CustomNavbar extends Component {
@@ -39,33 +38,18 @@ export default class CustomNavbar extends Component {
       })
 
       logout =()=>{
-  console.log("anas")
   localStorage.removeItem('usertoken')
   this.props.history.push('/')
       }
   //---------End logout func-----//
 
   render() {
-    console.log(localStorage.usertoken)
-
-    if(this.state.userType != 0){
-      console.log(this.state.userType)
-    }else{
-      console.log("user not signed")
-    }
-
 
     return (
       <Navbar collapseOnSelect expand="lg"  variant="dark" style={{ backgroundColor: "#F6D55C"}}>
         <Navbar.Brand href="/"><Image src={require("../assets/shalihat-logo.png")} style={{ width: '80px', height: '80px' }} /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          {/* <Nav className="mr-auto"  >
-            <Nav.Link href="/AddVilla"> <Button className="btn btn-warning" onclick="location.href ='/AddVilla'" >+ Add Villa</Button></Nav.Link>
-            <Nav.Link href="/CustomerSignUp"><Button className="btn btn-warning" onclick="location.href ='/CustomerSignUp'" >Sign Up</Button></Nav.Link>
-            <Nav.Link  href="/CustomerLogin"><Button className="btn btn-warning" onClick={this.state.hideNavItem}>Sign in</Button></Nav.Link>
-            <Nav.Link onClick={this.logout} href="/"> <Button className="btn btn-warning" onclick="location.href ='/'" >Log Out</Button></Nav.Link>
-          </Nav> */}
           <ul className="nav justify-content-end nav-fill" >
 
           {(localStorage.usertoken) ? null :  

@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import '../App.css';
 import vImage from "../assets/villaImg.jpg"
-import jwt_decode from 'jwt-decode'
 import axios from "axios"
-import { Redirect } from 'react-router-dom'
 
 export default class BookingListCard extends Component {
 
     deleteVilla = (e) => {
-        axios.delete("http://localhost:4000/booking/" + e.target.id)
+        axios.delete("/booking/" + e.target.id)
         .then(()=>{window.location.reload()})
     }
 

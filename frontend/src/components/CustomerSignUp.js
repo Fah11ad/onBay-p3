@@ -1,7 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-    Form, Button,
-} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
 import React, { Component } from 'react'
 import { register } from '../functionAuth/functionAuth'
 
@@ -17,7 +15,6 @@ export default class OwnerSignUp extends Component {
             type: 1
 
         })
-        console.log(this.state)
     }
     onSubmitHandelr = (e) => {
         e.preventDefault()

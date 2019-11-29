@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import jwt_decode from 'jwt-decode'
-import { Form, Button, Alert } from 'react-bootstrap'
+import { Button} from 'react-bootstrap'
 import '../App.css'
 import axios from "axios"
-import { Route, BrowserRouter, Switch, withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 
 export default class CustomTables extends Component {
@@ -20,13 +18,13 @@ export default class CustomTables extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:4000/villa")
+        axios.get("/villa")
             .then(res => {
                 this.setState({ villas: res.data })
             })
             .catch()
 
-        axios.get("http://localhost:4000/booking")
+        axios.get("/booking")
             .then(res => { this.setState({ bookings: res.data }) })
     }
 
@@ -82,7 +80,6 @@ export default class CustomTables extends Component {
 
 
         this.setState({ results: searchResult })
-        console.log("results length: " + searchResult.length)
 
     }
 

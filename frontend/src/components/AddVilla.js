@@ -16,15 +16,9 @@ export default class AddVilla extends Component {
         e.preventDefault()
         await login(this.state)
         this.props.history.push('/profile')
-        console.log(this.props.history);
 
     }
-    // onSubmitRegisterHandelr = async (e)=>{
-    //     await OwnerSignUp(this.state)
-    //     this.props.history.push('/OwnerSignUp')
-    // }
     render() {
-        console.log(this.state)
         return (
             <div className="formcontainer">
                 <div className="top">LOG IN</div>
@@ -40,11 +34,6 @@ export default class AddVilla extends Component {
                                 onChange={this.onChangeHandler} />
                         </Form.Group>
 
-                        {/* <div className="btnn"> */}
-                        {/* <Button variant='secondary' type="submit">
-                                LOG IN
-                </Button> */}
-                        {/* </div> */}
                         <button className="btnn" type="submit" style={{ width: "90px" }}>
                             LOG IN
                          </button>

@@ -52,7 +52,9 @@ router.get("/rates/:id", (req, res) => {
 
 //put villa's review
 router.put("/review/:id", (req, res) => {
+  console.log("inside add review backend")
   console.log(req.body)
+  
   Vi.findByIdAndUpdate(req.params.id, { $push: { reviews: req.body } }, (err, updatedModel) => {
     console.log("added review")
     if (err) {
