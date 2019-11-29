@@ -11,10 +11,10 @@ const multer  = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 var crypto = require('crypto')
 const Grid = require('gridfs-stream')
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5600;
 
 
-var allowedOrigins = ["http://localhost:4000", "http://localhost:3001"];
+var allowedOrigins = ["http://localhost:5600", "http://localhost:3001"];
 
 app.use(
   cors({
