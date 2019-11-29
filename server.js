@@ -117,5 +117,5 @@ app.get("/*", function(req, res) {
 });
 
 app.listen(PORT, function() {
-  console.log(`PORT : ${PORT}`,()=>console.log("express is running"));
+  console.log(`PORT : ${PORT}`);
 });
