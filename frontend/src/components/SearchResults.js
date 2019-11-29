@@ -14,6 +14,7 @@ export default class SearchResults extends Component {
                 {results.length > 0 &&  results.map(item=>{ 
                     return <SearchCards data={item} startAt={this.props.location.state.startAt} endAt={this.props.location.state.endAt} />
                   })  }
+                  {results.length == 0 && <h1>No results found</h1>}
             </div>
         </section>
         )

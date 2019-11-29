@@ -13,9 +13,6 @@ var crypto = require('crypto')
 const Grid = require('gridfs-stream')
 const PORT = process.env.PORT || 4000;
 
-// const PORT ;
-
-app.use(cors())
 
 var allowedOrigins = ["http://localhost:4000", "http://localhost:3001"];
 
@@ -35,18 +32,9 @@ app.use(
 );
 
 
+//the comented code is for uploading the image to the database but it didn't work properly so we commented it
 // const conn = mongoose.createConnection(process.env.DEV_DB)
 // let gfs
-
-mongoose.connect(
-  process.env.DEV_DB,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    // gfs = Grid(conn.db, mongoose.mongo)
-    // gfs.collection('uploads')
-    console.log("connected to mongoDB");
-  }
-);
 
 // Create storage engine
 // const storage = new GridFsStorage({
@@ -105,10 +93,19 @@ app.use(express.static(path.join(__dirname, "build")));
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+mongoose.connect(
+  process.env.DEV_DB,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    // gfs = Grid(conn.db, mongoose.mongo)
+    // gfs.collection('uploads')
+    console.log("connected to mongoDB");
+  }
+);
+
 app.use("/user",userRoutes)
 app.use("/villa",villaRoutes)
 app.use("/booking",bookingRoutes)
-
 
 // After all routes
 // This code essentially serves the index.html file on any unknown routes.

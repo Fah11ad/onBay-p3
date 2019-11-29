@@ -58,6 +58,7 @@ export default class CustomTables extends Component {
         e.preventDefault()
         let searchResult = []
 
+        if(this.state.villas != null){
         let filteredVillas = this.state.villas.filter(vItem => {
             return vItem.city == this.state.city && vItem.guests == this.state.guests
         })
@@ -77,6 +78,7 @@ export default class CustomTables extends Component {
                 searchResult.push(item)
             }
         })
+    }
 
 
         this.setState({ results: searchResult })
