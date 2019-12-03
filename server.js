@@ -14,21 +14,23 @@ const Grid = require('gridfs-stream')
 const PORT = process.env.PORT || 5600;
 
 
-var allowedOrigins = ["http://localhost:5600", "https://project3-shalihat.herokuapp.com"];
+// var allowedOrigins = ["http://localhost:5600", "https://project3-shalihat.herokuapp.com"];
 
 app.use(
-  cors({
-    origin: function(origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        var message =
-          "The CORS policy for this application does not allow access from origin " +
-          origin;
-        return callback(new Error(message), false);
-      }
-      return callback(null, true);
-    }
-  })
+  cors(
+  //   {
+  //   origin: function(origin, callback) {
+  //     if (!origin) return callback(null, true);
+  //     if (allowedOrigins.indexOf(origin) === -1) {
+  //       var message =
+  //         "The CORS policy for this application does not allow access from origin " +
+  //         origin;
+  //       return callback(new Error(message), false);
+  //     }
+  //     return callback(null, true);
+  //   }
+  // }
+  )
 );
 
 
